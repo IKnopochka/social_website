@@ -3,14 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {addPost, AllPropsType} from "./state/State";
+import {addPost, AllPropsType, updateNewPostText} from "./state/State";
 
 //addPost('Samurai')
 
 export const renderTree = (props: AllPropsType) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={props} addPost={addPost}/>
+            <App state={props} addPost={addPost} updateNewPostText={updateNewPostText}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

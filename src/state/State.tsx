@@ -28,6 +28,7 @@ export type PostsPropsType = {
     posts: Array<PostItemType>
     newPostText: string
     addPost: (message: string) => void
+    updateNewPostText: (message: string) => void
 }
 export type SidebarPropsType = {
     sidebar: Array<SidebarItemProps>
@@ -44,6 +45,7 @@ export type AllPropsType = {
 export type StateProps = {
     state: AllPropsType
     addPost: (message: string) => void
+    updateNewPostText: (message: string) => void
 }
 
 
@@ -82,5 +84,10 @@ export const addPost = (postMessage : string) => {
     }
 
     state.posts.push(newPost);
+    renderTree(state)
+}
+
+export const updateNewPostText = (newText: string) => {
+    state.newPostText = newText;
     renderTree(state)
 }

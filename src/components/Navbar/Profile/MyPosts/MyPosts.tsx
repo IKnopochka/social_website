@@ -12,11 +12,16 @@ const MyPosts = (props: PostsPropsType) => {
     const onAddPost = () => {
         if(newPostElement.current) {
             props.addPost(newPostElement.current.value);
-            newPostElement.current.value = '';
+            //newPostElement.current.value = '';
+            props.updateNewPostText('');
         }
     }
 
-    const onPostChange = () => {}
+    const onPostChange = () => {
+        if(newPostElement.current) {
+            props.updateNewPostText(newPostElement.current.value);
+        }
+    }
 
     return (
         <div className={classes.textArea}>
