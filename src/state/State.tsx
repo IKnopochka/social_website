@@ -1,4 +1,6 @@
-import {renderTree} from "../render";
+let onChangeRenderTree = () => {
+    console.log("state is changed")
+}
 
 export type DialogItemProps = {
     id: number
@@ -85,10 +87,14 @@ export const addPost = () => {
 
     state.posts.push(newPost);
     state.newPostText = '';
-    renderTree(state)
+    onChangeRenderTree()
 }
 
 export const updateNewPostText = (newText: string) => {
     state.newPostText = newText;
-    renderTree(state)
+    onChangeRenderTree()
+}
+
+export const subscribe = (observer: () => void) => {
+    onChangeRenderTree = observer;
 }
