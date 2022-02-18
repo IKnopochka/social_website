@@ -84,6 +84,7 @@ export const addPost = () => {
     }
 
     state.posts.push(newPost);
+    state.newPostText = '';
     renderTree(state)
 }
 
