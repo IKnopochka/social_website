@@ -1,0 +1,28 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    padding: 10px;
+}
+
+.dialogs img {
+    width: 50px;
+    max-height: 50px;
+    border-radius: 30px;
+}
+
+.name {
+    color: white;
+    text-decoration: none;
+}
+
+.active {
+    color: gold;
+    text-decoration: none;
+}
+
+.messages {
+padding-left: 10px;
+}
+
+.textArea {
+}
