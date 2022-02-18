@@ -27,7 +27,7 @@ export type ConversationsPropsType = {
 export type PostsPropsType = {
     posts: Array<PostItemType>
     newPostText: string
-    addPost: (message: string) => void
+    addPost: () => void
     updateNewPostText: (message: string) => void
 }
 export type SidebarPropsType = {
@@ -44,7 +44,7 @@ export type AllPropsType = {
 
 export type StateProps = {
     state: AllPropsType
-    addPost: (message: string) => void
+    addPost: () => void
     updateNewPostText: (message: string) => void
 }
 
@@ -76,10 +76,10 @@ export let state = {
     newPostText: 'It_kamasutra'
 }
 
-export const addPost = (postMessage : string) => {
+export const addPost = () => {
     const newPost: PostItemType = {
         id: 9,
-        message: postMessage,
+        message: state.newPostText,
         likeCount:0
     }
 
