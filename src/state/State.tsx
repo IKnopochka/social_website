@@ -39,10 +39,6 @@ export type AllPropsType = {
     posts: Array<PostItemType>
     newPostText: string
 }
-export type StateProps = {
-    store: StorePropsType
-}
-
 export type StorePropsType = {
     _state: AllPropsType,
     _onChangeRenderTree: () => void,
@@ -52,6 +48,9 @@ export type StorePropsType = {
     getState: () => void
 }
 
+export type StateProps = {
+    store: StorePropsType
+}
 export let store: StorePropsType = {
     _state: {
         dialogs: [
