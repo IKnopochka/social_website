@@ -11,21 +11,24 @@ import Settings from "./components/Navbar/Settings/Settings";
 import {StateProps} from "./state/State";
 
 
+const App: React.FC<StateProps> = (props) => {
 
-const App = (props: StateProps) => {
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar sidebar={props.state.sidebar}  />
+                <Navbar sidebar={props.store._state.sidebar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile posts={props.state.posts}
-                                                                   addPost={props.addPost}
-                                                                   newPostText={props.state.newPostText}
-                                                                   updateNewPostText={props.updateNewPostText}/>}/>
-                        <Route path={'/dialogs/*'} element={<Dialogs dialogs={props.state.dialogs}
-                                                                     messages={props.state.messages}/>}/>
+                        <Route path={'/profile'}
+                               element={<Profile
+                                   posts={props.store._state.posts}
+                                   addPost={props.store.addPost.bind(props.store)}
+                                   newPostText={props.store._state.newPostText}
+                                   updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                        <Route path={'/dialogs/*'} element={<Dialogs
+                            dialogs={props.store._state.dialogs}
+                            messages={props.store._state.messages}/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
