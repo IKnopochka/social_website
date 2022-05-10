@@ -23,12 +23,14 @@ const App: React.FC<StateProps> = (props) => {
                         <Route path={'/profile'}
                                element={<Profile
                                    posts={props.store._state.posts}
-                                   addPost={props.store.addPost.bind(props.store)}
+                                   dispatch={props.store.dispatch.bind(props.store)}
                                    newPostText={props.store._state.newPostText}
-                                   updateNewPostText={props.store.updateNewPostText.bind(props.store)}/>}/>
+                                   />}
+                        />
                         <Route path={'/dialogs/*'} element={<Dialogs
                             dialogs={props.store._state.dialogs}
-                            messages={props.store._state.messages}/>}/>
+                            messages={props.store._state.messages}/>}
+                        />
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>

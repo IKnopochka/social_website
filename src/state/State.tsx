@@ -26,8 +26,9 @@ export type ConversationsPropsType = {
 export type PostsPropsType = {
     posts: Array<PostItemType>
     newPostText: string
-    addPost: () => void
-    updateNewPostText: (message: string) => void
+    /*addPost: () => void
+    updateNewPostText: (message: string) => void*/
+    dispatch: (action: ActionTypes) => void
 }
 export type SidebarPropsType = {
     sidebar: Array<SidebarItemProps>
@@ -42,15 +43,28 @@ export type AllPropsType = {
 export type StorePropsType = {
     _state: AllPropsType,
     _onChangeRenderTree: () => void,
-    addPost: () => void,
-    updateNewPostText: (message: string) => void,
+
     subscribe: (observer: () => void) => void,
     getState: () => void
-}
 
+    dispatch: (action: ActionTypes) => void
+
+}
 export type StateProps = {
     store: StorePropsType
 }
+
+//Dispatch Types
+type AddPostType = {
+    type: 'ADD-POST'
+}
+type UpdateNewPostTextType = {
+    type: 'UPDATE-NEW-POST-TEXT',
+    newText: string
+}
+type ActionTypes = AddPostType | UpdateNewPostTextType
+
+
 export let store: StorePropsType = {
     _state: {
         dialogs: [
@@ -81,26 +95,28 @@ export let store: StorePropsType = {
     _onChangeRenderTree() {
         console.log("state is changed")
     },
-    addPost() {
-        const newPost: PostItemType = {
-            id: 9,
-            message: this._state.newPostText,
-            likeCount:0
-        }
-
-        this._state.posts.push(newPost);
-        this._state.newPostText = '';
-        this._onChangeRenderTree()
-    },
-    updateNewPostText(newText: string) {
-        this._state.newPostText = newText;
-        this._onChangeRenderTree()
-    },
     subscribe(observer: () => void) {
         this._onChangeRenderTree = observer;
     },
     getState() {
         return this._state;
+    },
+
+    dispatch (action) {
+        if (action.type === 'ADD-POST') {
+            const newPost: PostItemType = {
+                id: 9,
+                message: this._state.newPostText,
+                likeCount:0
+            }
+
+            this._state.posts.push(newPost);
+            this._state.newPostText = '';
+            this._onChangeRenderTree()
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
+            this._state.newPostText = action.newText;
+            this._onChangeRenderTree()
+        }
     }
 }
 
