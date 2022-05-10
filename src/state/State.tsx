@@ -55,14 +55,26 @@ export type StateProps = {
 }
 
 //Dispatch Types
-type AddPostType = {
+
+/*type AddPostType = {
     type: 'ADD-POST'
-}
+}*/
+type AddPostType = ReturnType<typeof AddPostActionCreator>
+
 type UpdateNewPostTextType = {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: string
 }
 type ActionTypes = AddPostType | UpdateNewPostTextType
+
+//for MyPosts.tsx
+export const AddPostActionCreator = () =>  {
+    return {type: 'ADD-POST'} as const
+}
+export const UpdateNewPostTextActionCreator = (newText:string):UpdateNewPostTextType  => (
+    {type: 'UPDATE-NEW-POST-TEXT', newText: newText} as const
+)
+
 
 
 export let store: StorePropsType = {
@@ -119,4 +131,5 @@ export let store: StorePropsType = {
         }
     }
 }
+
 

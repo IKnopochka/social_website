@@ -1,7 +1,7 @@
 import classes from "./MyPosts.module.css";
 import React from "react";
 import Post from "./Post/Post";
-import {PostsPropsType} from "../../../../state/State";
+import {AddPostActionCreator, PostsPropsType, UpdateNewPostTextActionCreator} from "../../../../state/State";
 
 const MyPosts = (props: PostsPropsType) => {
 
@@ -10,13 +10,14 @@ const MyPosts = (props: PostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const onAddPost = () => {
-            props.dispatch({type: 'ADD-POST'});
+            props.dispatch(AddPostActionCreator());
     }
 
     const onPostChange = () => {
         if(newPostElement.current) {
             /*props.updateNewPostText(newPostElement.current.value);*/
-            props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value});
+            /*props.dispatch({type: 'UPDATE-NEW-POST-TEXT', newText: newPostElement.current.value});*/
+            props.dispatch(UpdateNewPostTextActionCreator(newPostElement.current.value));
         }
     }
 
