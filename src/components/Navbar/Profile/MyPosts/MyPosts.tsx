@@ -1,9 +1,13 @@
 import classes from "./MyPosts.module.css";
 import React from "react";
 import Post from "./Post/Post";
-import {AddPostActionCreator, PostsPropsType, UpdateNewPostTextActionCreator} from "../../../../state/State";
+import {
+    AddPostActionCreator,
+    ProfilePropsType,
+    UpdateNewPostTextActionCreator
+} from "../../../../state/State";
 
-const MyPosts = (props: PostsPropsType) => {
+const MyPosts = (props: ProfilePropsType) => {
 
     let postElements = props.posts.map(p => (<Post id={p.id} message={p.message} likeCount={p.likeCount}/>))
 
