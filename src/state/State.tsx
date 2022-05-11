@@ -24,10 +24,16 @@ export type MessageItemProps = {
     id: number
     message: string
 }
+export type DialogsPropsType = {
+    dialogs: Array<DialogItemProps>
+    messages: Array<MessageItemProps>
+    newMessageText: string
+}
 export type DialogsPagePropsType = {
     dialogs: Array<DialogItemProps>
     messages: Array<MessageItemProps>
     newMessageText: string
+    dispatch: (action: ActionTypes) => void
 }
 //SideBar Types
 export type SidebarItemProps = {
@@ -41,7 +47,7 @@ export type SidebarPropsType = {
 //State Props
 export type StatePropsType = {
     profilePage: PostsPropsType
-    dialogsPage: DialogsPagePropsType
+    dialogsPage: DialogsPropsType
     sidebar: Array<SidebarItemProps>
 }
 //state Props separately
@@ -78,8 +84,8 @@ export const AddPostActionCreator = () =>  {
 export const UpdateNewPostTextActionCreator = (text:string):UpdateNewPostTextType  => (
     {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
 )
-export const AddMessageActionCreator = (message: string) =>  ({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: message} as const)
-export const UpdateMessageActionCreator = () =>  ({type: 'SEND-MESSAGE'} as const)
+export const UpdateMessageActionCreator = (message: string) =>  ({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: message} as const)
+export const AddMessageActionCreator = () =>  ({type: 'SEND-MESSAGE',} as const)
 
 
 
