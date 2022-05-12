@@ -2,8 +2,9 @@ import React, {ChangeEvent, ChangeEventHandler} from "react";
 import classes from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
-import {AddMessageActionCreator, DialogsPagePropsType, UpdateMessageActionCreator} from "../../../state/State";
-import * as events from "events";
+import { DialogsPagePropsType} from "../../../state/State";
+import {AddMessageActionCreator, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
+
 
 
 const Dialogs = (props: DialogsPagePropsType) => {
