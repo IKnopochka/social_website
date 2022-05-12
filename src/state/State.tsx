@@ -1,3 +1,7 @@
+import DialogsPageReducer from "./dialogsPageReducer";
+import ProfilePageReducer from "./profilePageReducer";
+import SidebarReducer from "./sidebarReducer";
+
 //ProfilePage types
 export type PostItemType = {
     id: number
@@ -133,30 +137,12 @@ export let store: StorePropsType = {
     },
 
     dispatch (action) {
-        if (action.type === 'ADD-POST') {
-            const newPost: PostItemType = {
-                id: 9,
-                message: this._state.profilePage.newPostText,
-                likeCount:0
-            }
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._onChangeRenderTree()
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT'){
-            this._state.profilePage.newPostText = action.newText;
-            this._onChangeRenderTree()
-        } else if (action.type === 'UPDATE-NEW-MESSAGE-TEXT') {
-            this._state.dialogsPage.newMessageText = action.newMessage;
-            this._onChangeRenderTree()
-        } else if (action.type === 'SEND-MESSAGE') {
-            const newTextMessage: MessageItemProps = {
-                id:7,
-                message: this._state.dialogsPage.newMessageText
-            }
-            this._state.dialogsPage.messages.push(newTextMessage)
-            this._state.dialogsPage.newMessageText = '';
-            this._onChangeRenderTree()
-        }
+
+        this._state.profilePage = ProfilePageReducer(this._state.profilePage, action)
+        this._state.dialogsPage = DialogsPageReducer(this._state.dialogsPage, action)
+        this._state.sidebar = SidebarReducer(this._state.sidebar, action)
+
+        this._onChangeRenderTree()
     }
 }
 
