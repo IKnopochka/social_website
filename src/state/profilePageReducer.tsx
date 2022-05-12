@@ -21,6 +21,6 @@ const ProfilePageReducer = (state: PostsPropsType, action: ActionTypes) => {
     }
 };
 
-
+//Action Creators
 
 export default ProfilePageReducer;
