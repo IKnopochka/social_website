@@ -1,5 +1,5 @@
 import React from 'react';
-import {ActionTypes, PostItemType, PostsPropsType} from "./State";
+import {ActionTypes, PostItemType, PostsPropsType, UpdateNewPostTextType} from "./State";
 
 const ProfilePageReducer = (state: PostsPropsType, action: ActionTypes) => {
     switch (action.type) {
@@ -22,5 +22,11 @@ const ProfilePageReducer = (state: PostsPropsType, action: ActionTypes) => {
 };
 
 //Action Creators
+export const AddPostActionCreator = () =>  {
+    return {type: 'ADD-POST'} as const
+}
+export const UpdateNewPostTextActionCreator = (text:string):UpdateNewPostTextType  => (
+    {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
+)
 
 export default ProfilePageReducer;

@@ -1,5 +1,5 @@
-import DialogsPageReducer from "./dialogsPageReducer";
-import ProfilePageReducer from "./profilePageReducer";
+import DialogsPageReducer, {AddMessageActionCreator, UpdateMessageActionCreator} from "./dialogsPageReducer";
+import ProfilePageReducer, {AddPostActionCreator} from "./profilePageReducer";
 import SidebarReducer from "./sidebarReducer";
 
 //ProfilePage types
@@ -72,7 +72,7 @@ export type StateProps = {
 
 //Dispatch Types
 
-type UpdateNewPostTextType = {
+export type UpdateNewPostTextType = {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: string
 }
@@ -82,14 +82,8 @@ export type ActionTypes = ReturnType<typeof AddPostActionCreator> |
     ReturnType<typeof UpdateMessageActionCreator>
 
 //Action Creators
-export const AddPostActionCreator = () =>  {
-    return {type: 'ADD-POST'} as const
-}
-export const UpdateNewPostTextActionCreator = (text:string):UpdateNewPostTextType  => (
-    {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
-)
-export const UpdateMessageActionCreator = (message: string) =>  ({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: message} as const)
-export const AddMessageActionCreator = () =>  ({type: 'SEND-MESSAGE',} as const)
+
+
 
 
 

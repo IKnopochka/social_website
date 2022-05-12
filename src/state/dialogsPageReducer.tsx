@@ -19,4 +19,9 @@ export const DialogsPageReducer = (state: DialogsPropsType, action: ActionTypes)
             return state;
     }
 };
+
+//Action Creators
+export const UpdateMessageActionCreator = (message: string) =>  ({type: 'UPDATE-NEW-MESSAGE-TEXT', newMessage: message} as const)
+export const AddMessageActionCreator = () =>  ({type: 'SEND-MESSAGE',} as const)
+
 export default DialogsPageReducer;
