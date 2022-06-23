@@ -8,29 +8,33 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/Navbar/News/News";
 import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
-import {StateProps} from "./state/State";
+import {Store} from "redux";
+import {ReducersType} from "./state/redux-store";
 
+type AppPropsType = {
+    store: Store<ReducersType>
+}
 
-const App: React.FC<StateProps> = (props) => {
-
+const App: React.FC<AppPropsType> = (props) => {
+    const {profilePage, dialogsPage, sidebar} = props.store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar sidebar={props.store._state.sidebar}/>
+                <Navbar sidebar={sidebar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path={'/profile'}
                                element={<Profile
-                                   posts={props.store._state.profilePage.posts}
+                                   posts={profilePage.posts}
                                    dispatch={props.store.dispatch.bind(props.store)}
-                                   newPostText={props.store._state.profilePage.newPostText}
+                                   newPostText={profilePage.newPostText}
                                />}
                         />
                         <Route path={'/dialogs/*'} element={<Dialogs
-                            dialogs={props.store._state.dialogsPage.dialogs}
-                            messages={props.store._state.dialogsPage.messages}
-                            newMessageText={props.store._state.dialogsPage.newMessageText}
+                            dialogs={dialogsPage.dialogs}
+                            messages={dialogsPage.messages}
+                            newMessageText={dialogsPage.newMessageText}
                             dispatch={props.store.dispatch.bind(props.store)}/>}
                         />
                         <Route path={'/news'} element={<News/>}/>

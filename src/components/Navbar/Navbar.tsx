@@ -2,7 +2,7 @@ import React from "react";
 import classes from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
 import {Friends} from "./Friends/Friends";
-import {SidebarPropsType} from "../../state/State";
+import {SidebarPropsType} from "../../state/store";
 
 /*let classes = {
     'nav': 'navClass'

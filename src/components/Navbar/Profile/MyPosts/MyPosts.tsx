@@ -1,7 +1,7 @@
 import classes from "./MyPosts.module.css";
 import React from "react";
 import Post from "./Post/Post";
-import {ProfilePropsType} from "../../../../state/State";
+import {ProfilePropsType} from "../../../../state/store";
 import {AddPostActionCreator, UpdateNewPostTextActionCreator} from "../../../../state/profilePageReducer";
 
 const MyPosts = (props: ProfilePropsType) => {

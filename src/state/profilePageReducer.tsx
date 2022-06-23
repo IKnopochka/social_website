@@ -1,7 +1,16 @@
 import React from 'react';
-import {ActionTypes, PostItemType, PostsPropsType, UpdateNewPostTextType} from "./State";
+import {ActionTypes, PostItemType, PostsPropsType, UpdateNewPostTextType} from "./store";
 
-const ProfilePageReducer = (state: PostsPropsType, action: ActionTypes) => {
+const initialState: PostsPropsType = {
+    posts: [
+        {id: 1, message: 'Hi, how are you', likeCount: 2},
+        {id: 2, message: 'It is my first post', likeCount: 5},
+        {id: 3, message: 'Welcome!', likeCount: 78}
+    ],
+    newPostText: 'It_kamasutra'
+}
+
+const ProfilePageReducer = (state: PostsPropsType = initialState, action: ActionTypes) => {
     switch (action.type) {
         case ('ADD-POST'):
             const newPost: PostItemType = {

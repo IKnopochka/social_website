@@ -2,7 +2,7 @@ import React, {ChangeEvent, ChangeEventHandler} from "react";
 import classes from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
-import { DialogsPagePropsType} from "../../../state/State";
+import { DialogsPagePropsType} from "../../../state/store";
 import {AddMessageActionCreator, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
 
 

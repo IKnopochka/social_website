@@ -83,10 +83,6 @@ export type ActionTypes = ReturnType<typeof AddPostActionCreator> |
 
 //Action Creators
 
-
-
-
-
 export let store: StorePropsType = {
     _state: {
         profilePage: {
@@ -99,11 +95,11 @@ export let store: StorePropsType = {
         },
         dialogsPage: {
             dialogs: [
-                {id: 1,  name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
-                {id: 2,  name: 'Irina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/20-31.jpg'},
-                {id: 3,  name: 'Kathryn', src: 'https://vjoy.cc/wp-content/uploads/2019/06/4-30.jpg'},
-                {id: 4,  name: 'Nina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/16-26.jpg'},
-                {id: 5,  name: 'Alina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/19-27.jpg'}
+                {id: 1, name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
+                {id: 2, name: 'Irina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/20-31.jpg'},
+                {id: 3, name: 'Kathryn', src: 'https://vjoy.cc/wp-content/uploads/2019/06/4-30.jpg'},
+                {id: 4, name: 'Nina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/16-26.jpg'},
+                {id: 5, name: 'Alina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/19-27.jpg'}
             ],
             messages: [
                 {id: 1, message: "Hey"},
@@ -114,9 +110,9 @@ export let store: StorePropsType = {
             newMessageText: ""
         },
         sidebar: [
-            {id: 1,  name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
-            {id: 2,  name: 'Irina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/20-31.jpg'},
-            {id: 3,  name: 'Kathryn', src: 'https://vjoy.cc/wp-content/uploads/2019/06/4-30.jpg'}
+            {id: 1, name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
+            {id: 2, name: 'Irina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/20-31.jpg'},
+            {id: 3, name: 'Kathryn', src: 'https://vjoy.cc/wp-content/uploads/2019/06/4-30.jpg'}
         ],
 
     },
@@ -130,7 +126,7 @@ export let store: StorePropsType = {
         return this._state;
     },
 
-    dispatch (action) {
+    dispatch(action) {
 
         this._state.profilePage = ProfilePageReducer(this._state.profilePage, action)
         this._state.dialogsPage = DialogsPageReducer(this._state.dialogsPage, action)

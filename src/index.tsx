@@ -1,21 +1,30 @@
 import React from 'react';
 import './index.css';
-import {store} from "./state/State";
+import {ReducersType, store} from "./state/redux-store";
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {Provider} from 'react-redux';
+import {Store} from "redux";
 
-export const renderTree = () => {
+
+export const renderTree = (store: Store<ReducersType>) => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}/>
+            <Provider store={store}>
+                <App store={store}/>
+            </Provider>
+
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
 
-store.subscribe(renderTree);
-renderTree();
+store.subscribe(() => {
+    renderTree(store)
+});
+
+renderTree(store);
 
 
 // If you want to start measuring performance in your app, pass a function

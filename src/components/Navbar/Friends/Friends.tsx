@@ -1,5 +1,5 @@
 import React from "react";
-import {SidebarItemProps} from "../../../state/State";
+import {SidebarItemProps} from "../../../state/store";
 import classes from "../Navbar.module.css";
 
 

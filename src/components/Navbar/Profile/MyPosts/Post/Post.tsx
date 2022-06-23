@@ -1,6 +1,6 @@
 import classes from "./Post.module.css";
 import React from "react";
-import {PostItemType} from "../../../../../state/State";
+import {PostItemType} from "../../../../../state/store";
 
 const Post = (props: PostItemType ) => {
     return (
