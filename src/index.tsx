@@ -10,6 +10,7 @@ import StoreContext from "./StoreContext";
 
 
 
+
 export const renderTree = (store: Store<ReducersType>) => {
     ReactDOM.render(
         <React.StrictMode>
