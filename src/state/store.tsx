@@ -1,7 +1,12 @@
 import DialogsPageReducer, {AddMessageActionCreator, UpdateMessageActionCreator} from "./dialogsPageReducer";
 import ProfilePageReducer, {AddPostActionCreator} from "./profilePageReducer";
 import SidebarReducer from "./sidebarReducer";
-
+import {Store} from "redux";
+import {ReducersType} from "./redux-store";
+//StoreType
+export type ReduxStorePropsType = {
+    store: Store<ReducersType>
+}
 //ProfilePage types
 export type PostItemType = {
     id: number
@@ -12,12 +17,15 @@ export type PostsPropsType = {
     posts: Array<PostItemType>
     newPostText: string
 }
-//for Profile and My Posts
-export type ProfilePropsType = {
-    posts: Array<PostItemType>
+
+//for My Posts
+export type MyPostsPropsType = {
     newPostText: string
-    dispatch: (action: ActionTypes) => void
+    updateNewPostText: (newPostText: string) => void
+    addPost: () => void
+    posts: Array<PostItemType>
 }
+
 //dialogsPage types
 export type DialogItemProps = {
     id: number
@@ -37,7 +45,8 @@ export type DialogsPagePropsType = {
     dialogs: Array<DialogItemProps>
     messages: Array<MessageItemProps>
     newMessageText: string
-    dispatch: (action: ActionTypes) => void
+    onAddMessage: () => void
+    onTextMessageChange: (text: string) => void
 }
 //SideBar Types
 export type SidebarItemProps = {

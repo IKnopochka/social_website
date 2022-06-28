@@ -1,9 +1,8 @@
-import React, {ChangeEvent, ChangeEventHandler} from "react";
+import React, {ChangeEvent} from "react";
 import classes from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import { DialogsPagePropsType} from "../../../state/store";
-import {AddMessageActionCreator, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
 
 
 
@@ -15,10 +14,12 @@ const Dialogs = (props: DialogsPagePropsType) => {
     let newMessageElement = React.createRef<HTMLTextAreaElement>()
 
     const onAddMessage = () => {
-        props.dispatch(AddMessageActionCreator())
+        props.onAddMessage()
+        //props.dispatch(AddMessageActionCreator())
     }
     const onTextMessageChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-            props.dispatch(UpdateMessageActionCreator(event.target.value))
+        props.onTextMessageChange(event.target.value)
+            //props.dispatch(UpdateMessageActionCreator(event.target.value))
     }
 
     return (

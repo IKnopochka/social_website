@@ -10,12 +10,10 @@ import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
 import {Store} from "redux";
 import {ReducersType} from "./state/redux-store";
+import DialogsContainer from "./components/Navbar/Dialogs/DialogsContainer";
+import {ReduxStorePropsType} from "./state/store";
 
-type AppPropsType = {
-    store: Store<ReducersType>
-}
-
-const App: React.FC<AppPropsType> = (props) => {
+const App: React.FC<ReduxStorePropsType> = (props) => {
     const {profilePage, dialogsPage, sidebar} = props.store.getState()
     return (
         <BrowserRouter>
@@ -26,16 +24,19 @@ const App: React.FC<AppPropsType> = (props) => {
                     <Routes>
                         <Route path={'/profile'}
                                element={<Profile
-                                   posts={profilePage.posts}
+                                   store={props.store}
+                                   /*posts={profilePage.posts}
                                    dispatch={props.store.dispatch.bind(props.store)}
-                                   newPostText={profilePage.newPostText}
+                                   newPostText={profilePage.newPostText}*/
                                />}
                         />
-                        <Route path={'/dialogs/*'} element={<Dialogs
-                            dialogs={dialogsPage.dialogs}
-                            messages={dialogsPage.messages}
-                            newMessageText={dialogsPage.newMessageText}
-                            dispatch={props.store.dispatch.bind(props.store)}/>}
+                        <Route path={'/dialogs/*'}
+                               element={<DialogsContainer store={props.store}
+                                                          /*dialogs={dialogsPage.dialogs}
+                                                          messages={dialogsPage.messages}
+                                                          newMessageText={dialogsPage.newMessageText}
+                                                          dispatch={props.store.dispatch.bind(props.store)}*/
+                               />}
                         />
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
