@@ -92,7 +92,7 @@ export type ActionTypes = ReturnType<typeof AddPostActionCreator> |
 
 //Action Creators
 
-export let store: StorePropsType = {
+let store: StorePropsType = {
     _state: {
         profilePage: {
             posts: [
