@@ -8,8 +8,6 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/Navbar/News/News";
 import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
-import {Store} from "redux";
-import {ReducersType} from "./state/redux-store";
 import DialogsContainer from "./components/Navbar/Dialogs/DialogsContainer";
 import {ReduxStorePropsType} from "./state/store";
 

@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import {Store} from "redux";
 
 
+
 export const renderTree = (store: Store<ReducersType>) => {
     ReactDOM.render(
         <React.StrictMode>
