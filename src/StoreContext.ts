@@ -5,7 +5,7 @@ import {ReducersType, store} from "./state/redux-store";
 
 const StoreContext = React.createContext({} as Store<ReducersType>)
 
-export default StoreContext;
+export default StoreContext
 
 
 //Это то что типо необязательно знать как создать свой провайдер
