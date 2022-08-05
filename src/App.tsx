@@ -22,14 +22,14 @@ const App: React.FC<ReduxStorePropsType> = (props) => {
                     <Routes>
                         <Route path={'/profile'}
                                element={<Profile
-                                   store={props.store}
+                                   /*store={props.store}*/
                                    /*posts={profilePage.posts}
                                    dispatch={props.store.dispatch.bind(props.store)}
                                    newPostText={profilePage.newPostText}*/
                                />}
                         />
                         <Route path={'/dialogs/*'}
-                               element={<DialogsContainer store={props.store}
+                               element={<DialogsContainer /*store={props.store}*/
                                                           /*dialogs={dialogsPage.dialogs}
                                                           messages={dialogsPage.messages}
                                                           newMessageText={dialogsPage.newMessageText}
