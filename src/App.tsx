@@ -3,7 +3,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Navbar/Profile/Profile";
-import Dialogs from "./components/Navbar/Dialogs/Dialogs";
+
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/Navbar/News/News";
 import Music from "./components/Navbar/Music/Music";
