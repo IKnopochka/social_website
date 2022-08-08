@@ -1,9 +1,11 @@
 import React from "react";
-import {AddMessageActionCreator, initialState, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
+import {AddMessageActionCreator, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
 import Dialogs from "./Dialogs";
 
 import {connect} from "react-redux";
-import {DialogsPropsType} from "../../../state/store";
+import {RootReducerType} from "../../../state/redux-store";
+import {DialogsMapToDispatchPropsType, DialogsPropsType} from "../../../state/store";
+import {Dispatch} from "redux";
 
 
 /*const DialogsContainer = () => {
@@ -33,14 +35,14 @@ import {DialogsPropsType} from "../../../state/store";
     )
 }*/
 
-let mapStateToProps = (state: any = initialState) => {
+let mapStateToProps = (state: RootReducerType): DialogsPropsType => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
         newMessageText: state.dialogsPage.newMessageText
     }
 }
-let mapDispatchToProps = (dispatch: any) => {
+let mapDispatchToProps = (dispatch: Dispatch): DialogsMapToDispatchPropsType => {
     return {
         onAddMessage: () => {dispatch(AddMessageActionCreator())},
         onTextMessageChange: (text: string) => {dispatch(UpdateMessageActionCreator(text))}

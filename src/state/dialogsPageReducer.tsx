@@ -31,7 +31,6 @@ export const DialogsPageReducer = (state: DialogsPropsType = initialState, actio
         case('UPDATE-NEW-MESSAGE-TEXT'):
             state.newMessageText = action.newMessage;
             return state
-
         default:
             return state;
     }

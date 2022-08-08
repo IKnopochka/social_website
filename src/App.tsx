@@ -8,7 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/Navbar/News/News";
 import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
-import DialogsContainer from "./components/Navbar/Dialogs/DialogsContainer";
+import {SuperDialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 import {ReduxStorePropsType} from "./state/store";
 
 const App: React.FC<ReduxStorePropsType> = (props) => {
@@ -29,7 +29,7 @@ const App: React.FC<ReduxStorePropsType> = (props) => {
                                />}
                         />
                         <Route path={'/dialogs/*'}
-                               element={<DialogsContainer /*store={props.store}*/
+                               element={<SuperDialogsContainer /*store={props.store}*/
                                                           /*dialogs={dialogsPage.dialogs}
                                                           messages={dialogsPage.messages}
                                                           newMessageText={dialogsPage.newMessageText}

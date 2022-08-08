@@ -2,10 +2,10 @@ import DialogsPageReducer, {AddMessageActionCreator, UpdateMessageActionCreator}
 import ProfilePageReducer, {AddPostActionCreator} from "./profilePageReducer";
 import SidebarReducer from "./sidebarReducer";
 import {Store} from "redux";
-import {ReducersType} from "./redux-store";
+import {RootReducerType} from "./redux-store";
 //StoreType
 export type ReduxStorePropsType = {
-    store: Store<ReducersType>
+    store: Store<RootReducerType>
 }
 //ProfilePage types
 export type PostItemType = {
@@ -18,13 +18,13 @@ export type PostsPropsType = {
     newPostText: string
 }
 
-//for My Posts
-export type MyPostsPropsType = {
-    newPostText: string
+export type PostsMapToDispatchPropsType = {
     updateNewPostText: (newPostText: string) => void
     addPost: () => void
-    posts: Array<PostItemType>
 }
+
+//for My Posts
+export type MyPostsPropsType = PostsPropsType & PostsMapToDispatchPropsType
 
 //dialogsPage types
 export type DialogItemProps = {
@@ -41,13 +41,13 @@ export type DialogsPropsType = {
     messages: Array<MessageItemProps>
     newMessageText: string
 }
-export type DialogsPagePropsType = {
-    dialogs: Array<DialogItemProps>
-    messages: Array<MessageItemProps>
-    newMessageText: string
+export type DialogsMapToDispatchPropsType = {
     onAddMessage: () => void
     onTextMessageChange: (text: string) => void
 }
+export type DialogsPagePropsType = DialogsMapToDispatchPropsType & DialogsPropsType
+
+
 //SideBar Types
 export type SidebarItemProps = {
     id: number
@@ -85,6 +85,7 @@ export type UpdateNewPostTextType = {
     type: 'UPDATE-NEW-POST-TEXT',
     newText: string
 }
+
 export type ActionTypes = ReturnType<typeof AddPostActionCreator> |
     UpdateNewPostTextType |
     ReturnType<typeof AddMessageActionCreator> |

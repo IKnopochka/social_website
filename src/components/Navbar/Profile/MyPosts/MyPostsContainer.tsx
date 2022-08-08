@@ -2,6 +2,9 @@ import React from "react";
 import {AddPostActionCreator, UpdateNewPostTextActionCreator} from "../../../../state/profilePageReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
+import {Dispatch} from "redux";
+import {RootReducerType} from "../../../../state/redux-store";
+import {PostsMapToDispatchPropsType, PostsPropsType} from "../../../../state/store";
 
 /*const MyPostsContainer = () => {
 
@@ -32,14 +35,14 @@ import {connect} from "react-redux";
     )
 }*/
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootReducerType): PostsPropsType => {
     return {
         posts: state.profilePage.posts,
         newPostText: state.profilePage.newPostText
     }
 }
 
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (dispatch: Dispatch): PostsMapToDispatchPropsType => {
     return {
         updateNewPostText: (text: string) => {dispatch(UpdateNewPostTextActionCreator(text))},
         addPost: () => {dispatch(AddPostActionCreator()

@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import {ReducersType, store} from "./state/redux-store";
+import {RootReducerType, store} from "./state/redux-store";
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
@@ -10,7 +10,7 @@ import {Store} from "redux";
 
 
 
-export const renderTree = (store: Store<ReducersType>) => {
+export const renderTree = (store: Store<RootReducerType>) => {
     ReactDOM.render(
         <React.StrictMode>
                 <Provider store={store}>
