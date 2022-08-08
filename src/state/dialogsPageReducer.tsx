@@ -18,19 +18,20 @@ const initialState: DialogsPropsType = {
     newMessageText: ""
 }
 
-export const DialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionTypes) => {
+export const DialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionTypes): DialogsPropsType => {
     switch (action.type) {
         case('SEND-MESSAGE'):
             const newTextMessage: MessageItemProps = {
                 id: 7,
                 message: state.newMessageText
             }
-            state.messages.push(newTextMessage)
-            state.newMessageText = '';
-            return state
+            /*copy.newMessageText = '';*/
+            /*state.messages.push(newTextMessage)
+            state.newMessageText = '';*/
+            return {...state, messages: [...state.messages, newTextMessage], newMessageText: ""}
         case('UPDATE-NEW-MESSAGE-TEXT'):
-            state.newMessageText = action.newMessage;
-            return state
+            /*state.newMessageText = action.newMessage;*/
+            return {...state, newMessageText: action.newMessage}
         default:
             return state;
     }

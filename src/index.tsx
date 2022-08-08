@@ -10,7 +10,7 @@ import {Store} from "redux";
 
 
 
-export const renderTree = (store: Store<RootReducerType>) => {
+/*export const renderTree = (store: Store<RootReducerType>) => {*/
     ReactDOM.render(
         <React.StrictMode>
                 <Provider store={store}>
@@ -21,13 +21,13 @@ export const renderTree = (store: Store<RootReducerType>) => {
         </React.StrictMode>,
         document.getElementById('root')
     );
-}
+/*}*/
 
-store.subscribe(() => {
+/*store.subscribe(() => {
     renderTree(store)
-});
+});*/
 
-renderTree(store);
+/*renderTree(store);*/
 
 
 // If you want to start measuring performance in your app, pass a function

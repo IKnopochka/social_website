@@ -10,7 +10,7 @@ const initialState: PostsPropsType = {
     newPostText: 'It_kamasutra'
 }
 
-const ProfilePageReducer = (state: PostsPropsType = initialState, action: ActionTypes) => {
+const ProfilePageReducer = (state: PostsPropsType = initialState, action: ActionTypes): PostsPropsType => {
     switch (action.type) {
         case ('ADD-POST'):
             const newPost: PostItemType = {
@@ -18,13 +18,13 @@ const ProfilePageReducer = (state: PostsPropsType = initialState, action: Action
                 message: state.newPostText,
                 likeCount: 0
             }
-            state.posts.push(newPost);
-            state.newPostText = '';
-            return state;
+           /* state.posts.push(newPost);
+            state.newPostText = '';*/
+            return {...state, posts: [...state.posts, newPost], newPostText: ""};
 
         case ('UPDATE-NEW-POST-TEXT'):
-            state.newPostText = action.newText;
-            return state;
+            /*state.newPostText = action.newText;*/
+            return {...state, newPostText: action.newText};
         default:
             return state
     }
