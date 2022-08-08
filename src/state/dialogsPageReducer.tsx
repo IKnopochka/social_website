@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActionTypes, DialogsPropsType, MessageItemProps} from "./store";
 
-export const initialState: DialogsPropsType = {
+const initialState: DialogsPropsType = {
     dialogs: [
         {id: 1,  name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
         {id: 2,  name: 'Irina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/20-31.jpg'},

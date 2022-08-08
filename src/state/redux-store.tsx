@@ -12,6 +12,8 @@ const rootReducer = combineReducers({
 export type RootReducerType =  ReturnType<typeof rootReducer>
 
 export const store: Store<RootReducerType> = createStore(rootReducer)
+
+
 console.log('redux store', store)
 console.log('redux store get state', store.getState())
 console.log('redux store dispatch', store.dispatch)
