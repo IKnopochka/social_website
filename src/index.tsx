@@ -6,7 +6,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {Store} from "redux";
-import StoreContext from "./StoreContext";
 
 
 
@@ -14,11 +13,9 @@ import StoreContext from "./StoreContext";
 export const renderTree = (store: Store<ReducersType>) => {
     ReactDOM.render(
         <React.StrictMode>
-            <StoreContext.Provider value={store}>
                 <Provider store={store}>
                     <App store={store}/>
                 </Provider>
-            </StoreContext.Provider>
 
 
         </React.StrictMode>,

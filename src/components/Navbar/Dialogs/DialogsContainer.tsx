@@ -1,10 +1,12 @@
 import React from "react";
-import {AddMessageActionCreator, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
+import {AddMessageActionCreator, initialState, UpdateMessageActionCreator} from "../../../state/dialogsPageReducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../../StoreContext";
+
+import {connect} from "react-redux";
+import {DialogsPropsType} from "../../../state/store";
 
 
-const DialogsContainer = () => {
+/*const DialogsContainer = () => {
 
     return (
         <StoreContext.Consumer>
@@ -29,6 +31,20 @@ const DialogsContainer = () => {
         </StoreContext.Consumer>
 
     )
+}*/
+
+let mapStateToProps = (state: any = initialState) => {
+    return {
+        dialogs: state.dialogsPage.dialogs,
+        messages: state.dialogsPage.messages,
+        newMessageText: state.dialogsPage.newMessageText
+    }
+}
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        onAddMessage: () => {dispatch(AddMessageActionCreator())},
+        onTextMessageChange: (text: string) => {dispatch(UpdateMessageActionCreator(text))}
+    }
 }
 
-export default DialogsContainer
+export const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
