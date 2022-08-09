@@ -1,11 +1,11 @@
 import React from 'react';
 import './index.css';
-import {RootReducerType, store} from "./state/redux-store";
+import {store} from "./state/redux-store";
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
-import {Store} from "redux";
+
 
 
 

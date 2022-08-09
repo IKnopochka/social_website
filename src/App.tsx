@@ -10,6 +10,7 @@ import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
 import {SuperDialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 import {ReduxStorePropsType} from "./state/store";
+import UsersContainer from "./components/Users/UsersContainer";
 
 const App: React.FC<ReduxStorePropsType> = (props) => {
     const {profilePage, dialogsPage, sidebar} = props.store.getState()
@@ -20,25 +21,13 @@ const App: React.FC<ReduxStorePropsType> = (props) => {
                 <Navbar sidebar={sidebar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path={'/profile'}
-                               element={<Profile
-                                   /*store={props.store}*/
-                                   /*posts={profilePage.posts}
-                                   dispatch={props.store.dispatch.bind(props.store)}
-                                   newPostText={profilePage.newPostText}*/
-                               />}
-                        />
-                        <Route path={'/dialogs/*'}
-                               element={<SuperDialogsContainer /*store={props.store}*/
-                                                          /*dialogs={dialogsPage.dialogs}
-                                                          messages={dialogsPage.messages}
-                                                          newMessageText={dialogsPage.newMessageText}
-                                                          dispatch={props.store.dispatch.bind(props.store)}*/
-                               />}
-                        />
+                        <Route path={'/profile'} element={<Profile/>}/>
+                        <Route path={'/dialogs/*'} element={<SuperDialogsContainer/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
+
+                        <Route path={'users'} element={<UsersContainer/>}/>
                     </Routes>
                 </div>
             </div>
