@@ -3,12 +3,26 @@ import {AllUsersPropsType} from "../../state/usersReducer";
 import {MapToDispatchPropsType} from "./UsersContainer";
 import styles from './Users.module.css'
 
+import userPhoto from '../../assets/images/images.png'
+import {usersAPI} from "../../API/API";
+
 
 type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 
 const Users = (props: UsersPagePropsType) => {
 
-    if(props.users.length === 0) {props.setUsers([
+    let getUsers = () => {
+        console.log('users', props.users)
+        if(props.users.length === 0) {
+
+            usersAPI.getUsers().then(response => {
+                console.log('users', response)
+                props.setUsers(response.data.items)
+            })}
+
+    }
+
+/*    if(props.users.length === 0) {props.setUsers([
         {
             id: 1,
             name: 'Irina',
@@ -41,13 +55,13 @@ const Users = (props: UsersPagePropsType) => {
             location: {city: 'LosAngeles', country: 'USA'},
             followed: false
         }
-    ])}
+    ])}*/
 
 
 
     let userElement = props.users.map(m => <div key={m.id}>
         <span>
-            <div><img src={m.src} className={styles.photo}/></div>
+            <div><img src={m.photos.small !== null ? m.photos.small : userPhoto} className={styles.photo}/></div>
             <div>
                 {m.followed ? <button onClick={() => {
                         props.unfollow(m.id)
@@ -63,15 +77,18 @@ const Users = (props: UsersPagePropsType) => {
             <div>{m.status}</div>
         </span>
         <span>
-            <div>{m.location.city}</div>
-            <div>{m.location.country}</div>
+            <div>{"m.location.city"}</div>
+            <div>{"m.location.country"}</div>
         </span>
         </span>
 
     </div>)
 
-    return (
-        <div>{userElement}</div>
+    return (<div>
+            <button onClick={getUsers}>GetUsers</button>
+            <div>{userElement}</div>
+    </div>
+
     );
 };
 

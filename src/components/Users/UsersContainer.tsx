@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {Dispatch} from "redux";
 import {RootReducerType} from "../../state/redux-store";
 import {AllUsersPropsType, followAC, setUsersAC, unfollowAC, UserPropsType} from "../../state/usersReducer";
+import User from "./UsersC";
 
 export type MapToDispatchPropsType = {
     follow: (id: number) => void
@@ -25,6 +26,6 @@ const mapDispatchToProps = (dispatch: Dispatch): MapToDispatchPropsType => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(User)
 
 export default UsersContainer;
