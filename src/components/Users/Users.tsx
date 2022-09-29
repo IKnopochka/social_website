@@ -9,7 +9,7 @@ import {usersAPI} from "../../API/API";
 
 type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 
-const Users = (props: UsersPagePropsType) => {
+/*const Users = (props: UsersPagePropsType) => {
 
     let getUsers = () => {
         console.log('users', props.users)
@@ -22,7 +22,7 @@ const Users = (props: UsersPagePropsType) => {
 
     }
 
-/*    if(props.users.length === 0) {props.setUsers([
+/!*    if(props.users.length === 0) {props.setUsers([
         {
             id: 1,
             name: 'Irina',
@@ -55,7 +55,7 @@ const Users = (props: UsersPagePropsType) => {
             location: {city: 'LosAngeles', country: 'USA'},
             followed: false
         }
-    ])}*/
+    ])}*!/
 
 
 
@@ -90,6 +90,4 @@ const Users = (props: UsersPagePropsType) => {
     </div>
 
     );
-};
-
-export default Users;
+};*/
