@@ -14,7 +14,16 @@ class User extends React.Component<UsersPagePropsType> {
     componentDidMount() {
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
         this.props.setUsers(response.data.items)
+        this.props.setTotalCount(response.data.totalCount)
     });
+    }
+
+    onPageChanged = (pageNumber: number) =>  {
+        this.props.setCurrentPage(pageNumber)
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
+            this.props.setUsers(response.data.items)
+        });
+
     }
 
     render() {
@@ -53,7 +62,7 @@ class User extends React.Component<UsersPagePropsType> {
         return (<div>
                 {pages.map(p => {
                     return <span className={this.props.currentPage === p ? styles.selectedPage : ''}
-                    onClick={() => {this.props.setCurrentPage(p)}}>{p}</span>
+                    onClick={() => {this.onPageChanged(p)}}>{p}</span>
                 })}
                 <div>{userElement}</div>
             </div>

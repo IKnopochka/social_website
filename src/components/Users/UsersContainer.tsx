@@ -5,7 +5,7 @@ import {RootReducerType} from "../../state/redux-store";
 import {
     AllUsersPropsType,
     followAC,
-    setCurrentPageAC,
+    setCurrentPageAC, setTotalCountAC,
     setUsersAC,
     unfollowAC,
     UserPropsType
@@ -16,7 +16,8 @@ export type MapToDispatchPropsType = {
     follow: (id: number) => void
     unfollow: (id: number) => void
     setUsers: (users: Array<UserPropsType>) => void
-    setCurrentPage: (currentPage: number) => void
+    setCurrentPage: (currentPageNumber: number) => void
+    setTotalCount: (totalUsers: number) => void
 }
 
 const mapStateToProps= (state: RootReducerType): AllUsersPropsType => {
@@ -33,7 +34,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapToDispatchPropsType => {
         follow: (userID) => {dispatch(followAC(userID))},
         unfollow: (userID) => {dispatch(unfollowAC(userID))},
         setUsers: (users) => {dispatch(setUsersAC(users))},
-        setCurrentPage: (currentPage) => {dispatch(setCurrentPageAC(currentPage))}
+        setCurrentPage: (currentPageNumber) => {dispatch(setCurrentPageAC(currentPageNumber))},
+        setTotalCount: (totalUsers) => {dispatch(setTotalCountAC(totalUsers))}
     }
 }
 
