@@ -1,63 +1,22 @@
 import React from 'react';
+import userPhoto from "../../assets/images/images.png";
+import styles from "./Users.module.css";
 import {AllUsersPropsType} from "../../state/usersReducer";
-import {MapToDispatchPropsType} from "./UsersContainer";
-import styles from './Users.module.css'
 
-import userPhoto from '../../assets/images/images.png'
-import {usersAPI} from "../../API/API";
-
-
-type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
-
-/*const Users = (props: UsersPagePropsType) => {
-
-    let getUsers = () => {
-        console.log('users', props.users)
-        if(props.users.length === 0) {
-
-            usersAPI.getUsers().then(response => {
-                console.log('users', response)
-                props.setUsers(response.data.items)
-            })}
-
+type UsersPropsType = {
+        onPageChanged: (p: number) => void
+        follow: (id: number) => void
+        unfollow: (id: number) => void
     }
-
-/!*    if(props.users.length === 0) {props.setUsers([
-        {
-            id: 1,
-            name: 'Irina',
-            src: 'https://klike.net/uploads/posts/2019-09/1568622594_22.jpg',
-            status: 'I am a supergirl',
-            location: {city: 'Minsk', country: 'Belarus'},
-            followed: true
-        },
-        {
-            id: 2,
-            name: 'Michael',
-            src: 'https://klike.net/uploads/posts/2019-09/1568622594_22.jpg',
-            status: 'I am a boss',
-            location: {city: 'LA', country: 'USA'},
-            followed: true
-        },
-        {
-            id: 3,
-            name: 'Myshka',
-            src: 'https://klike.net/uploads/posts/2019-09/1568622594_22.jpg',
-            status: 'I am a Plyushka',
-            location: {city: 'Myaginarium', country: 'Myafland'},
-            followed: false
-        },
-        {
-            id: 4,
-            name: 'Asta',
-            src: 'https://klike.net/uploads/posts/2019-09/1568622594_22.jpg',
-            status: 'I love you all',
-            location: {city: 'LosAngeles', country: 'USA'},
-            followed: false
-        }
-    ])}*!/
+    & AllUsersPropsType
 
 
+const Users = ({onPageChanged, ...props}:UsersPropsType) => {
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let pages = []
+    for (let i = 0; i < pagesCount; i++) {
+        pages.push(i + 1)
+    }
 
     let userElement = props.users.map(m => <div key={m.id}>
         <span>
@@ -85,9 +44,18 @@ type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
     </div>)
 
     return (<div>
-            <button onClick={getUsers}>GetUsers</button>
+            {pages.map(p => {
+                return <span className={props.currentPage === p ? styles.selectedPage : ''}
+                             onClick={() => {
+                                 onPageChanged(p)
+                             }}>{p}</span>
+            })}
             <div>{userElement}</div>
-    </div>
+        </div>
 
     );
-};*/
+}
+;
+
+export default Users
+

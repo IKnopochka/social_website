@@ -18,6 +18,7 @@ export type AllUsersPropsType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 type UsersReducerType = ReturnType<typeof followAC> |
@@ -30,7 +31,8 @@ const usersInitialState: AllUsersPropsType = {
     users: [],
     pageSize: 5,
     totalUsersCount: 0,
-    currentPage: 3
+    currentPage: 1,
+    isFetching: true
 
 }
 
