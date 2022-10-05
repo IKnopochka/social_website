@@ -5,7 +5,7 @@ import {RootReducerType} from "../../state/redux-store";
 import {
     AllUsersPropsType,
     followAC,
-    setCurrentPageAC, setTotalCountAC,
+    setCurrentPageAC, setToggleIsFetchingAC, setTotalCountAC,
     setUsersAC,
     unfollowAC,
     UserPropsType
@@ -13,6 +13,7 @@ import {
 import {usersAPI} from "../../API/API";
 import Users from "./Users";
 import preloaderPic from '../../images/Spin-1s-200px.svg'
+import Preloader from "../Preloader/Preloader";
 
 type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 export type MapToDispatchPropsType = {
@@ -21,12 +22,15 @@ export type MapToDispatchPropsType = {
     setUsers: (users: Array<UserPropsType>) => void
     setCurrentPage: (currentPageNumber: number) => void
     setTotalCount: (totalUsers: number) => void
+    toggleIsFetching: (isFetching: boolean) => void
 }
 
 class UsersContainer extends React.Component<UsersPagePropsType> {
 
     componentDidMount() {
+        this.props.toggleIsFetching(true)
         usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
             this.props.setTotalCount(response.data.totalCount)
         });
@@ -34,7 +38,9 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber)
+        this.props.toggleIsFetching(true)
         usersAPI.getUsers(pageNumber, this.props.pageSize).then(response => {
+            this.props.toggleIsFetching(false)
             this.props.setUsers(response.data.items)
         });
 
@@ -42,7 +48,8 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <img src={preloaderPic} /> : null}
+            {this.props.isFetching ? <Preloader/> : null}
+
             <Users onPageChanged={this.onPageChanged}
                    users={this.props.users}
                    pageSize={this.props.pageSize}
@@ -84,6 +91,9 @@ const mapDispatchToProps = (dispatch: Dispatch): MapToDispatchPropsType => {
         },
         setTotalCount: (totalUsers) => {
             dispatch(setTotalCountAC(totalUsers))
+        },
+        toggleIsFetching: (isFetching) => {
+            dispatch(setToggleIsFetchingAC(isFetching))
         }
     }
 }

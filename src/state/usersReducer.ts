@@ -25,7 +25,8 @@ type UsersReducerType = ReturnType<typeof followAC> |
     ReturnType<typeof unfollowAC> |
     ReturnType<typeof setUsersAC> |
     ReturnType<typeof setCurrentPageAC> |
-    ReturnType<typeof setTotalCountAC>
+    ReturnType<typeof setTotalCountAC> |
+    ReturnType<typeof setToggleIsFetchingAC>
 
 const usersInitialState: AllUsersPropsType = {
     users: [],
@@ -49,6 +50,8 @@ const UsersReducer = (state: AllUsersPropsType = usersInitialState, action: User
             return {...state, currentPage: action.currentPage}
         case 'SET-TOTAL-COUNT':
             return {...state, totalUsersCount: action.totalUsers}
+        case 'TOGGLE-IS-FETCHING':
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -59,5 +62,6 @@ export const unfollowAC = (userId: number) => ({type: 'UNFOLLOW', id: userId} as
 export const setUsersAC = (users: Array<UserPropsType>) => ({type: 'SET-USERS', users: users} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: 'SET-CURRENT-PAGE', currentPage: currentPage} as const)
 export const setTotalCountAC = (totalUsers: number) => ({type: 'SET-TOTAL-COUNT', totalUsers} as const)
+export const setToggleIsFetchingAC = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
 
 export default UsersReducer;
