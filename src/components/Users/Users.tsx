@@ -2,6 +2,7 @@ import React from 'react';
 import userPhoto from "../../assets/images/images.png";
 import styles from "./Users.module.css";
 import {AllUsersPropsType} from "../../state/usersReducer";
+import {NavLink} from "react-router-dom";
 
 type UsersPropsType = {
         onPageChanged: (p: number) => void
@@ -11,16 +12,20 @@ type UsersPropsType = {
     & AllUsersPropsType
 
 
-const Users = ({onPageChanged, ...props}:UsersPropsType) => {
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages = []
-    for (let i = 0; i < pagesCount; i++) {
-        pages.push(i + 1)
-    }
+const Users = ({onPageChanged, ...props}: UsersPropsType) => {
+        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+        let pages = []
+        for (let i = 0; i < pagesCount; i++) {
+            pages.push(i + 1)
+        }
 
-    let userElement = props.users.map(m => <div key={m.id}>
+        let userElement = props.users.map(m => <div key={m.id}>
         <span>
-            <div><img src={m.photos.small !== null ? m.photos.small : userPhoto} className={styles.photo}/></div>
+            <div>
+                <NavLink to={'/profile/' + m.id}>
+                    <img src={m.photos.small !== null ? m.photos.small : userPhoto} className={styles.photo}/>
+                </NavLink>
+            </div>
             <div>
                 {m.followed ? <button onClick={() => {
                         props.unfollow(m.id)
@@ -30,7 +35,7 @@ const Users = ({onPageChanged, ...props}:UsersPropsType) => {
                     }}>Unfollow</button>}
             </div>
         </span>
-        <span>
+            <span>
         <span>
             <div>{m.name}</div>
             <div>{m.status}</div>
@@ -41,20 +46,20 @@ const Users = ({onPageChanged, ...props}:UsersPropsType) => {
         </span>
         </span>
 
-    </div>)
+        </div>)
 
-    return (<div>
-            {pages.map(p => {
-                return <span className={props.currentPage === p ? styles.selectedPage : ''}
-                             onClick={() => {
-                                 onPageChanged(p)
-                             }}>{p}</span>
-            })}
-            <div>{userElement}</div>
-        </div>
+        return (<div>
+                {pages.map(p => {
+                    return <span className={props.currentPage === p ? styles.selectedPage : ''}
+                                 onClick={() => {
+                                     onPageChanged(p)
+                                 }}>{p}</span>
+                })}
+                <div>{userElement}</div>
+            </div>
 
-    );
-}
+        );
+    }
 ;
 
 export default Users

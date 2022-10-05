@@ -1,6 +1,7 @@
 import classes from "./Post.module.css";
 import React from "react";
-import {PostItemType} from "../../../../../state/store";
+import {PostItemType} from "../../../../../state/profilePageReducer";
+
 
 const Post = (props: PostItemType ) => {
     return (

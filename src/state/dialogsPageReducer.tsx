@@ -1,5 +1,6 @@
 import React from 'react';
-import {ActionTypes, DialogsPropsType, MessageItemProps} from "./store";
+import { DialogsPropsType, MessageItemProps} from "./store";
+import {addPost, updateNewPostText} from "./profilePageReducer";
 
 const initialState: DialogsPropsType = {
     dialogs: [
@@ -18,6 +19,9 @@ const initialState: DialogsPropsType = {
     newMessageText: ""
 }
 
+export type ActionTypes = ReturnType<typeof AddMessageActionCreator> |
+    ReturnType<typeof UpdateMessageActionCreator>
+
 export const DialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionTypes): DialogsPropsType => {
     switch (action.type) {
         case('SEND-MESSAGE'):
@@ -25,12 +29,8 @@ export const DialogsPageReducer = (state: DialogsPropsType = initialState, actio
                 id: 7,
                 message: state.newMessageText
             }
-            /*copy.newMessageText = '';*/
-            /*state.messages.push(newTextMessage)
-            state.newMessageText = '';*/
             return {...state, messages: [...state.messages, newTextMessage], newMessageText: ""}
         case('UPDATE-NEW-MESSAGE-TEXT'):
-            /*state.newMessageText = action.newMessage;*/
             return {...state, newMessageText: action.newMessage}
         default:
             return state;

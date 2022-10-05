@@ -1,5 +1,5 @@
 import DialogsPageReducer, {AddMessageActionCreator, UpdateMessageActionCreator} from "./dialogsPageReducer";
-import ProfilePageReducer, {AddPostActionCreator} from "./profilePageReducer";
+import ProfilePageReducer, {ActionTypes, addPost, PostsPropsType} from "./profilePageReducer";
 import SidebarReducer from "./sidebarReducer";
 import {Store} from "redux";
 import {RootReducerType} from "./redux-store";
@@ -8,15 +8,7 @@ export type ReduxStorePropsType = {
     store: Store<RootReducerType>
 }
 //ProfilePage types
-export type PostItemType = {
-    id: number
-    message: string
-    likeCount: number
-}
-export type PostsPropsType = {
-    posts: Array<PostItemType>
-    newPostText: string
-}
+
 
 export type PostsMapToDispatchPropsType = {
     updateNewPostText: (newPostText: string) => void
@@ -86,14 +78,11 @@ export type UpdateNewPostTextType = {
     newText: string
 }
 
-export type ActionTypes = ReturnType<typeof AddPostActionCreator> |
-    UpdateNewPostTextType |
-    ReturnType<typeof AddMessageActionCreator> |
-    ReturnType<typeof UpdateMessageActionCreator>
+
 
 //Action Creators
 
-let store: StorePropsType = {
+/*let store: StorePropsType = {
     _state: {
         profilePage: {
             posts: [
@@ -144,6 +133,6 @@ let store: StorePropsType = {
 
         this._onChangeRenderTree()
     }
-}
+}*/
 
 

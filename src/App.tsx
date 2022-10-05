@@ -11,9 +11,10 @@ import Settings from "./components/Navbar/Settings/Settings";
 import {SuperDialogsContainer} from "./components/Navbar/Dialogs/DialogsContainer";
 import {ReduxStorePropsType} from "./state/store";
 import UsersContainer from "./components/Users/UsersContainer";
+import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
 
 const App: React.FC<ReduxStorePropsType> = (props) => {
-    const {profilePage, dialogsPage, sidebar} = props.store.getState()
+    const {sidebar} = props.store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
@@ -21,7 +22,7 @@ const App: React.FC<ReduxStorePropsType> = (props) => {
                 <Navbar sidebar={sidebar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path={'/profile'} element={<Profile/>}/>
+                        <Route path={'/profile/*'} element={<ProfileContainer/>}/>
                         <Route path={'/dialogs/*'} element={<SuperDialogsContainer/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>

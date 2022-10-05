@@ -1,5 +1,6 @@
 import React from 'react';
-import {ActionTypes, SidebarItemProps} from "./store";
+import {SidebarItemProps} from "./store";
+import {ActionTypes} from "./profilePageReducer";
 
 const initialState: Array<SidebarItemProps>= [
     {id: 1,  name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
