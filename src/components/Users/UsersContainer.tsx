@@ -4,15 +4,16 @@ import {Dispatch} from "redux";
 import {RootReducerType} from "../../state/redux-store";
 import {
     AllUsersPropsType,
-    followAC,
-    setCurrentPageAC, setToggleIsFetchingAC, setTotalCountAC,
-    setUsersAC,
-    unfollowAC,
+    follow,
+    setCurrentPage,
+    toggleIsFetching,
+    setTotalCount,
+    setUsers,
+    unfollow,
     UserPropsType
 } from "../../state/usersReducer";
 import {usersAPI} from "../../API/API";
 import Users from "./Users";
-import preloaderPic from '../../images/Spin-1s-200px.svg'
 import Preloader from "../Preloader/Preloader";
 
 type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
@@ -75,7 +76,7 @@ const mapStateToProps = (state: RootReducerType): AllUsersPropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch): MapToDispatchPropsType => {
+/*const mapDispatchToProps = (dispatch: Dispatch): MapToDispatchPropsType => {
     return {
         follow: (userID) => {
             dispatch(followAC(userID))
@@ -96,6 +97,8 @@ const mapDispatchToProps = (dispatch: Dispatch): MapToDispatchPropsType => {
             dispatch(setToggleIsFetchingAC(isFetching))
         }
     }
-}
+}*/
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+export default connect(mapStateToProps,
+    {follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching})
+(UsersContainer)
