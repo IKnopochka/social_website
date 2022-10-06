@@ -5,36 +5,79 @@ export type PostItemType = {
     message: string
     likeCount: number
 }
-export type PostsPropsType = {
-    posts?: Array<PostItemType>
-    newPostText?: string,
-    profile?: null
-}
 
-const initialState: PostsPropsType = {
+export type ProfilePropsType = null | {
+    aboutMe: string
+    contacts: {
+        facebook: string
+        website: string
+        vk: string
+        twitter: string
+        instagram: string
+        youtube: string
+        github: string
+        mainLink: string
+    }
+    lookingForAJob: boolean
+    lookingForAJobDescription: string
+    fullName: string
+    userId: number
+    photos: {
+        small : string
+        large: string
+    }
+}
+export type PostsPropsType = {
+    posts: Array<PostItemType>
+    newPostText: string,
+}
+export type OnlyProfilePropsType = {
+    profile: ProfilePropsType
+}
+export type ProfilePagePropsType = OnlyProfilePropsType & PostsPropsType
+
+const initialState: ProfilePagePropsType = {
     posts: [
         {id: 1, message: 'Hi, how are you', likeCount: 2},
         {id: 2, message: 'It is my first post', likeCount: 5},
         {id: 3, message: 'Welcome!', likeCount: 78}
     ],
     newPostText: 'It_kamasutra',
-    profile: null
+    profile: {
+        aboutMe: "string",
+        contacts: {
+            facebook: "string",
+            website: "string",
+            vk: "string",
+            twitter: "string",
+            instagram: "string",
+            youtube: "string",
+            github: "string",
+            mainLink: "string"
+        },
+        lookingForAJob: true,
+        lookingForAJobDescription: "string",
+        fullName: "string",
+        userId: 1,
+        photos: {
+            small : "string",
+            large: "string"
+        }
+    }
 }
 
 export type ActionTypes = ReturnType<typeof addPost> |
     ReturnType<typeof updateNewPostText> |
     ReturnType<typeof setUserProfile>
 
-const ProfilePageReducer = (state: PostsPropsType = initialState, action: ActionTypes): PostsPropsType => {
+const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
     switch (action.type) {
         case ('ADD-POST'):
-            // @ts-ignore
             const newPost: PostItemType = {
                 id: 9,
                 message: state.newPostText,
                 likeCount: 0
             }
-            // @ts-ignore
             return {...state, posts: [...state.posts, newPost], newPostText: ""};
         case ('UPDATE-NEW-POST-TEXT'):
             return {...state, newPostText: action.newText};
@@ -46,14 +89,8 @@ const ProfilePageReducer = (state: PostsPropsType = initialState, action: Action
 };
 
 //Action Creators
-export const addPost = () =>  {
-    return {type: 'ADD-POST'} as const
-}
-export const updateNewPostText = (text:string) => (
-    {type: 'UPDATE-NEW-POST-TEXT', newText: text} as const
-)
-export const setUserProfile = (profile: any) => (
-    {type: 'SET-USER-PROFILE', profile} as const
-)
+export const addPost = () =>  {return {type: 'ADD-POST'} as const}
+export const updateNewPostText = (text:string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
+export const setUserProfile = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
 
 export default ProfilePageReducer;
