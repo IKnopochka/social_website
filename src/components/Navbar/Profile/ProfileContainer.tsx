@@ -1,23 +1,25 @@
-import React from "react";
+import React, {Component, ComponentType} from "react";
 import Profile from "./Profile";
 import {usersAPI} from "../../../API/API";
 import {connect} from "react-redux";
 import {
-    OnlyProfilePropsType,
+    ProfileMapStateToPropsType,
     ProfilePropsType,
     setUserProfile
 } from "../../../state/profilePageReducer";
 import {RootReducerType} from "../../../state/redux-store";
+import {Params, useLocation, useNavigate, useParams} from "react-router-dom";
 
-type ProfileContainerPropsType = OnlyProfilePropsType & {
+type ProfileContainerPropsType = ProfileMapStateToPropsType & {
     setUserProfile: (data: ProfilePropsType) => void
 }
 
-class ProfileContainer extends React.Component<ProfileContainerPropsType> {
+class ProfileContainer extends React.Component<ProfileContainerPropsType & {params: Params}> {
 
     componentDidMount() {
-        // @ts-ignore
-        usersAPI.getProfile(this.props.profile.userId).then(response => {
+        debugger
+        let userId = this.props.params.userId
+        userId &&  usersAPI.getProfile(userId).then(response => {
             this.props.setUserProfile(response.data)
         })
     }
@@ -35,4 +37,20 @@ const mapStateToProps = (state: RootReducerType) => {
     }
 
 }
-export default connect(mapStateToProps, {setUserProfile})(ProfileContainer);
+
+function withRouter(Component: ComponentType<ProfileContainerPropsType & {params: Params}> ) {
+
+    function ComponentWithRouterProp(props:ProfileContainerPropsType) {
+        return (
+            <Component
+                {...props}
+                params={useParams()}
+            />
+        );
+    }
+
+    return ComponentWithRouterProp;
+}
+/*let WithUrlDataContainerComponent = withRouter(ProfileContainer)*/
+
+export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));

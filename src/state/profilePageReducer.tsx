@@ -31,10 +31,10 @@ export type PostsPropsType = {
     posts: Array<PostItemType>
     newPostText: string,
 }
-export type OnlyProfilePropsType = {
+export type ProfileMapStateToPropsType = {
     profile: ProfilePropsType
 }
-export type ProfilePagePropsType = OnlyProfilePropsType & PostsPropsType
+export type ProfilePagePropsType = ProfileMapStateToPropsType & PostsPropsType
 
 const initialState: ProfilePagePropsType = {
     posts: [

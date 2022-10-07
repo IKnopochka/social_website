@@ -12,7 +12,7 @@ export const usersAPI = {
     getUsers(currentPage: number, pageSize: number){
         return instance.get(`users?page=${currentPage}&count=${pageSize}`)
     },
-    getProfile(userId: number){
+    getProfile(userId: string){
     return instance.get(`profile/${userId}`)
 },
 }

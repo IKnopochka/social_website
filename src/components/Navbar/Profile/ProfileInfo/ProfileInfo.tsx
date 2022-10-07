@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
-import {OnlyProfilePropsType} from "../../../../state/profilePageReducer";
+import {ProfileMapStateToPropsType} from "../../../../state/profilePageReducer";
 import Preloader from "../../../Preloader/Preloader";
 
-const ProfileInfo = (props: OnlyProfilePropsType) => {
+const ProfileInfo = (props: ProfileMapStateToPropsType) => {
     if(!props.profile) return <Preloader/>
     return <div>
             <div>

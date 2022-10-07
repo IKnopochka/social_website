@@ -22,7 +22,8 @@ const App: React.FC<ReduxStorePropsType> = (props) => {
                 <Navbar sidebar={sidebar}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path={'/profile/*'} element={<ProfileContainer/>}/>
+                        <Route path={'/profile/:userId'} element={<ProfileContainer/>}/>
+                        <Route path={'/profile'} element={<ProfileContainer/>}/>
                         <Route path={'/dialogs/*'} element={<SuperDialogsContainer/>}/>
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
