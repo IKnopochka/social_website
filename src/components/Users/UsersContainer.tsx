@@ -8,7 +8,7 @@ import {
     setTotalCount,
     setUsers,
     unfollow,
-    UserPropsType, AllUsersPropsType
+    UserPropsType, AllUsersPropsType, toggleButtonInProcess
 } from "../../state/usersReducer";
 import {usersAPI} from "../../API/API";
 import Users from "./Users";
@@ -23,6 +23,7 @@ export type MapToDispatchPropsType = {
     setCurrentPage: (currentPageNumber: number) => void
     setTotalCount: (totalUsers: number) => void
     toggleIsFetching: (isFetching: boolean) => void
+    toggleButtonInProcess: (isProcessing: boolean, userId: number) => void
 }
 
 class UsersContainer extends React.Component<UsersPagePropsType> {
@@ -51,14 +52,7 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
             {this.props.isFetching ? <Preloader/> : null}
 
             <Users onPageChanged={this.onPageChanged}
-                   users={this.props.users}
-                   pageSize={this.props.pageSize}
-                   totalUsersCount={this.props.totalUsersCount}
-                   currentPage={this.props.currentPage}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}
-                   isFetching={this.props.isFetching}
-
+                {...this.props}
             />
         </>
     }
@@ -71,10 +65,11 @@ const mapStateToProps = (state: RootReducerType): AllUsersPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        isFetching: state.usersPage.isFetching
+        isFetching: state.usersPage.isFetching,
+        processingInProgress: state.usersPage.processingInProgress
     }
 }
 
 export default connect(mapStateToProps,
-    {follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching})
+    {follow, unfollow, setUsers, setCurrentPage, setTotalCount, toggleIsFetching, toggleButtonInProcess})
 (UsersContainer)

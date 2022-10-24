@@ -1,7 +1,7 @@
 import React from 'react';
 import userPhoto from "../../assets/images/images.png";
 import styles from "./Users.module.css";
-import {AllUsersPropsType} from "../../state/usersReducer";
+import {AllUsersPropsType, toggleButtonInProcess} from "../../state/usersReducer";
 import {NavLink} from "react-router-dom";
 import {usersAPI} from "../../API/API";
 
@@ -9,12 +9,12 @@ type UsersPropsType = {
         onPageChanged: (p: number) => void
         follow: (id: number) => void
         unfollow: (id: number) => void
+        toggleButtonInProcess: (isProcessing: boolean, id: number) => void
     }
     & AllUsersPropsType
 
 
 const Users = ({onPageChanged, ...props}: UsersPropsType) => {
-
         let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
         let pages = []
         for (let i = 0; i < pagesCount; i++) {
@@ -29,18 +29,22 @@ const Users = ({onPageChanged, ...props}: UsersPropsType) => {
                 </NavLink>
             </div>
             <div>
-                {m.followed ? <button onClick={() => {
+                {m.followed ? <button disabled={props.processingInProgress.some((id) => id === m.id)} onClick={() => {
+                        props.toggleButtonInProcess(true, m.id)
                         usersAPI.unfollowUser(m.id).then(data => {
                             if (data.resultCode == 0) {
                                 props.unfollow(m.id)
                             }
+                            props.toggleButtonInProcess(false, m.id)
                         })
                     }}>Unfollow</button>
-                    : <button onClick={() => {
+                    : <button disabled={props.processingInProgress.some(id => id === m.id)} onClick={() => {
+                        props.toggleButtonInProcess(true, m.id)
                         usersAPI.followUser(m.id).then(data => {
                             if (data.resultCode == 0) {
                                 props.follow(m.id)
                             }
+                            props.toggleButtonInProcess(false, m.id)
                         })
                     }}>Follow</button>}
             </div>
