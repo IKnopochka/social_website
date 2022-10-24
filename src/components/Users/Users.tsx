@@ -30,21 +30,19 @@ const Users = ({onPageChanged, ...props}: UsersPropsType) => {
             </div>
             <div>
                 {m.followed ? <button onClick={() => {
-                        debugger
-                        usersAPI.unfollowUser(m.id).then(response => {
-                            if (response.data.resultCode == 0) {
+                        usersAPI.unfollowUser(m.id).then(data => {
+                            if (data.resultCode == 0) {
                                 props.unfollow(m.id)
                             }
                         })
-                    }}>Follow</button>
+                    }}>Unfollow</button>
                     : <button onClick={() => {
-                        debugger
-                        usersAPI.followUser(m.id).then(response => {
-                            if (response.data.resultCode == 0) {
+                        usersAPI.followUser(m.id).then(data => {
+                            if (data.resultCode == 0) {
                                 props.follow(m.id)
                             }
                         })
-                    }}>Unfollow</button>}
+                    }}>Follow</button>}
             </div>
         </span>
             <span>

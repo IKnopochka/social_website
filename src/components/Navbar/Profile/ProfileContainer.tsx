@@ -18,8 +18,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType & {para
 
     componentDidMount() {
         let userId = this.props.params.userId
-        userId &&  usersAPI.getProfile(userId).then(response => {
-            this.props.setUserProfile(response.data)
+        userId &&  usersAPI.getProfile(userId).then(data => {
+            this.props.setUserProfile(data)
         })
     }
 
