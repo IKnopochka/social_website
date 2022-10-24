@@ -12,13 +12,14 @@ import {SuperDialogsContainer} from "./components/Navbar/Dialogs/DialogsContaine
 import {ReduxStorePropsType} from "./state/store";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App: React.FC<ReduxStorePropsType> = (props) => {
     const {sidebar} = props.store.getState()
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <Navbar sidebar={sidebar}/>
                 <div className='app-wrapper-content'>
                     <Routes>

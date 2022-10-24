@@ -3,6 +3,7 @@ import userPhoto from "../../assets/images/images.png";
 import styles from "./Users.module.css";
 import {AllUsersPropsType} from "../../state/usersReducer";
 import {NavLink} from "react-router-dom";
+import {usersAPI} from "../../API/API";
 
 type UsersPropsType = {
         onPageChanged: (p: number) => void
@@ -13,6 +14,7 @@ type UsersPropsType = {
 
 
 const Users = ({onPageChanged, ...props}: UsersPropsType) => {
+
         let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
         let pages = []
         for (let i = 0; i < pagesCount; i++) {
@@ -28,10 +30,20 @@ const Users = ({onPageChanged, ...props}: UsersPropsType) => {
             </div>
             <div>
                 {m.followed ? <button onClick={() => {
-                        props.unfollow(m.id)
+                        debugger
+                        usersAPI.unfollowUser(m.id).then(response => {
+                            if (response.data.resultCode == 0) {
+                                props.unfollow(m.id)
+                            }
+                        })
                     }}>Follow</button>
                     : <button onClick={() => {
-                        props.follow(m.id)
+                        debugger
+                        usersAPI.followUser(m.id).then(response => {
+                            if (response.data.resultCode == 0) {
+                                props.follow(m.id)
+                            }
+                        })
                     }}>Unfollow</button>}
             </div>
         </span>

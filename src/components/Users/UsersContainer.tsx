@@ -59,6 +59,7 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
                    unfollow={this.props.unfollow}
                    isFetching={this.props.isFetching}
 
+
             />
         </>
     }

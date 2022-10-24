@@ -17,7 +17,6 @@ type ProfileContainerPropsType = ProfileMapStateToPropsType & {
 class ProfileContainer extends React.Component<ProfileContainerPropsType & {params: Params}> {
 
     componentDidMount() {
-        debugger
         let userId = this.props.params.userId
         userId &&  usersAPI.getProfile(userId).then(response => {
             this.props.setUserProfile(response.data)
