@@ -1,4 +1,6 @@
 import React from 'react';
+import {Dispatch} from "redux";
+import {usersAPI} from "../API/API";
 
 export type DataStateType = {
     id: number | null
@@ -25,3 +27,13 @@ export const AuthReducer = (state: DataStateType = initialState, action: ActionT
 };
 
 export const setAuthUserData = (data: DataStateType) => ({type: "SET-USER-DATA", data} as const)
+
+export const setAuthUserDataThunkCreator = () => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getAuth().then(data => {
+            if(data.resultCode === 0) {
+                dispatch(setAuthUserData(data.data))
+            }
+        })
+    }
+}

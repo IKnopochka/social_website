@@ -1,8 +1,8 @@
 import React, {Component, ComponentType} from "react";
 import Profile from "./Profile";
-import {usersAPI} from "../../../API/API";
 import {connect} from "react-redux";
 import {
+    getProfileThunkCreator,
     ProfileMapStateToPropsType,
     ProfilePropsType,
     setUserProfile
@@ -12,15 +12,17 @@ import {Params, useLocation, useNavigate, useParams} from "react-router-dom";
 
 type ProfileContainerPropsType = ProfileMapStateToPropsType & {
     setUserProfile: (data: ProfilePropsType) => void
+    getProfileThunkCreator: (paramsUserId: string) => void
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType & {params: Params}> {
 
     componentDidMount() {
-        let userId = this.props.params.userId
+        this.props.params.userId && this.props.getProfileThunkCreator(this.props.params.userId)
+        /*let userId = this.props.params.userId
         userId &&  usersAPI.getProfile(userId).then(data => {
             this.props.setUserProfile(data)
-        })
+        })*/
     }
 
     render() {
@@ -52,4 +54,4 @@ function withRouter(Component: ComponentType<ProfileContainerPropsType & {params
 }
 /*let WithUrlDataContainerComponent = withRouter(ProfileContainer)*/
 
-export default connect(mapStateToProps, {setUserProfile})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {setUserProfile, getProfileThunkCreator})(withRouter(ProfileContainer));

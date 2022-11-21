@@ -2,15 +2,17 @@ import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../state/redux-store";
-import {DataStateType, setAuthUserData} from "../../state/authReducer";
+import {DataStateType, setAuthUserData, setAuthUserDataThunkCreator} from "../../state/authReducer";
 import {usersAPI} from "../../API/API";
 
 type HeaderContainerPropsTypes = DataStateType & {
     setAuthUserData: (data: DataStateType) => void
+    setAuthUserDataThunkCreator: () => void
 }
 
 class HeaderContainer extends React.Component<HeaderContainerPropsTypes> {
     componentDidMount() {
+        /*this.props.setAuthUserDataThunkCreator()*/
         usersAPI.getAuth().then(data => {
             if(data.resultCode === 0) {
                 this.props.setAuthUserData(data.data)
@@ -19,9 +21,7 @@ class HeaderContainer extends React.Component<HeaderContainerPropsTypes> {
     }
 
     render() {
-        return <div>
-            <Header {...this.props}/>
-        </div>
+        return <Header {...this.props}/>
     }
 }
 
@@ -34,4 +34,4 @@ const mapStateToPros = (state: RootReducerType): DataStateType => {
     }
 }
 
-export default connect(mapStateToPros, {setAuthUserData})(HeaderContainer)
+export default connect(mapStateToPros, {setAuthUserData, setAuthUserDataThunkCreator})(HeaderContainer)

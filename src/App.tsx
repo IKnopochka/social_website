@@ -29,8 +29,7 @@ const App: React.FC<ReduxStorePropsType> = (props) => {
                         <Route path={'/news'} element={<News/>}/>
                         <Route path={'/music'} element={<Music/>}/>
                         <Route path={'/settings'} element={<Settings/>}/>
-
-                        <Route path={'/users'} element={<UsersContainer/>}/>
+                        <Route path={'/users/*'} element={<UsersContainer/>}/>
                     </Routes>
                 </div>
             </div>

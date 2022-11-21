@@ -1,4 +1,6 @@
 import React from 'react';
+import {Dispatch} from "redux";
+import {usersAPI} from "../API/API";
 
 export type PostItemType = {
     id: number
@@ -92,5 +94,13 @@ const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: 
 export const addPost = () =>  {return {type: 'ADD-POST'} as const}
 export const updateNewPostText = (text:string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
 export const setUserProfile = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
+
+export const getProfileThunkCreator = (paramsUserId: string) => {
+    return (dispatch: Dispatch) => {
+        usersAPI.getProfile(paramsUserId).then(data => {
+            dispatch(setUserProfile(data))
+        })
+    }
+}
 
 export default ProfilePageReducer;

@@ -1,17 +1,13 @@
 import React from 'react';
 import userPhoto from "../../assets/images/images.png";
 import styles from "./Users.module.css";
-import {AllUsersPropsType, toggleButtonInProcess} from "../../state/usersReducer";
 import {NavLink} from "react-router-dom";
-import {usersAPI} from "../../API/API";
+import {UsersPagePropsType} from "./UsersContainer";
 
 type UsersPropsType = {
         onPageChanged: (p: number) => void
-        follow: (id: number) => void
-        unfollow: (id: number) => void
-        toggleButtonInProcess: (isProcessing: boolean, id: number) => void
     }
-    & AllUsersPropsType
+    & UsersPagePropsType
 
 
 const Users = ({onPageChanged, ...props}: UsersPropsType) => {
@@ -29,24 +25,12 @@ const Users = ({onPageChanged, ...props}: UsersPropsType) => {
                 </NavLink>
             </div>
             <div>
-                {m.followed ? <button disabled={props.processingInProgress.some((id) => id === m.id)} onClick={() => {
-                        props.toggleButtonInProcess(true, m.id)
-                        usersAPI.unfollowUser(m.id).then(data => {
-                            if (data.resultCode == 0) {
-                                props.unfollow(m.id)
-                            }
-                            props.toggleButtonInProcess(false, m.id)
-                        })
-                    }}>Unfollow</button>
-                    : <button disabled={props.processingInProgress.some(id => id === m.id)} onClick={() => {
-                        props.toggleButtonInProcess(true, m.id)
-                        usersAPI.followUser(m.id).then(data => {
-                            if (data.resultCode == 0) {
-                                props.follow(m.id)
-                            }
-                            props.toggleButtonInProcess(false, m.id)
-                        })
-                    }}>Follow</button>}
+                {m.followed ? <button disabled={props.processingInProgress.some((id) => id === m.id)}
+                                      onClick={() => props.unFollowUserThunkCreator(m.id)}
+                    >Unfollow</button>
+                    : <button disabled={props.processingInProgress.some(id => id === m.id)}
+                              onClick={() => {props.followUserThunkCreator(m.id)}}
+                    >Follow</button>}
             </div>
         </span>
             <span>
