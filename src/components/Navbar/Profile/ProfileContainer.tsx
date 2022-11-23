@@ -4,28 +4,25 @@ import {connect} from "react-redux";
 import {
     getProfileThunkCreator,
     ProfileMapStateToPropsType,
-    ProfilePropsType,
-    setUserProfile
 } from "../../../state/profilePageReducer";
 import {RootReducerType} from "../../../state/redux-store";
-import {Params, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Params, Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
 
 type ProfileContainerPropsType = ProfileMapStateToPropsType & {
-    setUserProfile: (data: ProfilePropsType) => void
     getProfileThunkCreator: (paramsUserId: string) => void
+    isAuth: boolean
 }
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType & {params: Params}> {
 
     componentDidMount() {
         this.props.params.userId && this.props.getProfileThunkCreator(this.props.params.userId)
-        /*let userId = this.props.params.userId
-        userId &&  usersAPI.getProfile(userId).then(data => {
-            this.props.setUserProfile(data)
-        })*/
     }
 
     render() {
+
+        if(!this.props.isAuth) return <Navigate to={'/login'}/>
+
         return (
             <Profile {...this.props} profile={this.props.profile}/>
         )
@@ -34,7 +31,8 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType & {para
 
 const mapStateToProps = (state: RootReducerType) => {
     return {
-        profile: state.profilePage.profile
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
     }
 
 }
@@ -54,4 +52,4 @@ function withRouter(Component: ComponentType<ProfileContainerPropsType & {params
 }
 /*let WithUrlDataContainerComponent = withRouter(ProfileContainer)*/
 
-export default connect(mapStateToProps, {setUserProfile, getProfileThunkCreator})(withRouter(ProfileContainer));
+export default connect(mapStateToProps, {getProfileThunkCreator})(withRouter(ProfileContainer));

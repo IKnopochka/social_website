@@ -35,11 +35,12 @@ import {Dispatch} from "redux";
     )
 }*/
 
-let mapStateToProps = (state: RootReducerType): DialogsPropsType => {
+let mapStateToProps = (state: RootReducerType): DialogsPropsType & {isAuth: boolean} => {
     return {
         dialogs: state.dialogsPage.dialogs,
         messages: state.dialogsPage.messages,
-        newMessageText: state.dialogsPage.newMessageText
+        newMessageText: state.dialogsPage.newMessageText,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch): DialogsMapToDispatchPropsType => {

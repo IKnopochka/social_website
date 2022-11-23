@@ -3,10 +3,11 @@ import classes from "./Dialogs.module.css";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {MessageItem} from "./MessageItem/MessageItem";
 import { DialogsPagePropsType} from "../../../state/store";
+import {Navigate} from "react-router-dom";
 
 
 
-const Dialogs = (props: DialogsPagePropsType) => {
+const Dialogs = (props: DialogsPagePropsType & {isAuth: boolean}) => {
 
     let dialogsElements = props.dialogs.map(d => (<DialogItem id={d.id} name={d.name} src={d.src}/>))
     let messagesElements = props.messages.map(m => (<MessageItem id={m.id} message={m.message}/>))
@@ -22,7 +23,9 @@ const Dialogs = (props: DialogsPagePropsType) => {
             //props.dispatch(UpdateMessageActionCreator(event.target.value))
     }
 
+    if(!props.isAuth) return <Navigate to={'/login'}/>
     return (
+
         <div className={classes.dialogs}>
             <div className={classes.friends}>
                 {dialogsElements}

@@ -3,7 +3,6 @@ import Header from "./Header";
 import {connect} from "react-redux";
 import {RootReducerType} from "../../state/redux-store";
 import {DataStateType, setAuthUserData, setAuthUserDataThunkCreator} from "../../state/authReducer";
-import {usersAPI} from "../../API/API";
 
 type HeaderContainerPropsTypes = DataStateType & {
     setAuthUserData: (data: DataStateType) => void
@@ -12,12 +11,13 @@ type HeaderContainerPropsTypes = DataStateType & {
 
 class HeaderContainer extends React.Component<HeaderContainerPropsTypes> {
     componentDidMount() {
-        /*this.props.setAuthUserDataThunkCreator()*/
-        usersAPI.getAuth().then(data => {
+        debugger
+        this.props.setAuthUserDataThunkCreator()
+        /*authAPI.getAuth().then(data => {
             if(data.resultCode === 0) {
                 this.props.setAuthUserData(data.data)
             }
-        })
+        })*/
     }
 
     render() {
