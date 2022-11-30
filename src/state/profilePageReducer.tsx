@@ -1,6 +1,7 @@
 import React from 'react';
 import {Dispatch} from "redux";
-import {usersAPI} from "../API/API";
+import {profileAPI, usersAPI} from "../API/API";
+import {ProfileMapStateToPropsType} from "../components/Navbar/Profile/ProfileContainer";
 
 export type PostItemType = {
     id: number
@@ -9,7 +10,7 @@ export type PostItemType = {
 }
 
 export type ProfilePropsType = null | {
-    aboutMe: string
+    aboutMe: string | undefined
     contacts: {
         facebook: string
         website: string
@@ -25,17 +26,16 @@ export type ProfilePropsType = null | {
     fullName: string
     userId: number
     photos: {
-        small : string
+        small: string
         large: string
     }
 }
 export type PostsPropsType = {
     posts: Array<PostItemType>
     newPostText: string,
+    status: string
 }
-export type ProfileMapStateToPropsType = {
-    profile: ProfilePropsType
-}
+
 export type ProfilePagePropsType = ProfileMapStateToPropsType & PostsPropsType
 
 const initialState: ProfilePagePropsType = {
@@ -45,8 +45,9 @@ const initialState: ProfilePagePropsType = {
         {id: 3, message: 'Welcome!', likeCount: 78}
     ],
     newPostText: 'It_kamasutra',
+    status: 'Curiosity',
     profile: {
-        aboutMe: "string",
+        aboutMe: "Simple",
         contacts: {
             facebook: "string",
             website: "string",
@@ -60,17 +61,18 @@ const initialState: ProfilePagePropsType = {
         lookingForAJob: true,
         lookingForAJobDescription: "string",
         fullName: "string",
-        userId: 1,
+        userId: 25201,
         photos: {
-            small : "string",
-            large: "string"
+            small: "",
+            large: ""
         }
     }
 }
 
 export type ActionTypes = ReturnType<typeof addPost> |
     ReturnType<typeof updateNewPostText> |
-    ReturnType<typeof setUserProfile>
+    ReturnType<typeof setUserProfile> |
+    ReturnType<typeof setStatus>
 
 const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
     switch (action.type) {
@@ -85,21 +87,45 @@ const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: 
             return {...state, newPostText: action.newText};
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile};
+        case 'SET-STATUS' :
+            return {...state, status: action.status}
         default:
             return state
     }
 };
-
+//{...state.profile, aboutMe: action.status}
 //Action Creators
-export const addPost = () =>  {return {type: 'ADD-POST'} as const}
-export const updateNewPostText = (text:string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
+export const addPost = () => {
+    return {type: 'ADD-POST'} as const
+}
+export const updateNewPostText = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
 export const setUserProfile = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
+export const setStatus = (status: string) => ({type: 'SET-STATUS', status} as const)
 
-export const getProfileThunkCreator = (paramsUserId: string) => {
+export const getProfileThunkCreator = (paramsUserId: number) => {
     return (dispatch: Dispatch) => {
-        usersAPI.getProfile(paramsUserId).then(data => {
+        profileAPI.getProfile(paramsUserId).then(data => {
             dispatch(setUserProfile(data))
         })
+    }
+}
+export const getStatusThunkCreator = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.getStatus(userId)
+            .then(response => {
+                dispatch(setStatus(response.data))
+            })
+    }
+}
+export const updateStatusThunkCreator = (status: string) => {
+    return (dispatch: Dispatch) => {
+        profileAPI.changeStatus(status)
+            .then(response => {
+                    if (response.data.resultCode === 0) {
+                        dispatch(setStatus(status))
+                    }
+                }
+            )
     }
 }
 

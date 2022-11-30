@@ -7,7 +7,7 @@ import {Navigate} from "react-router-dom";
 
 
 
-const Dialogs = (props: DialogsPagePropsType & {isAuth: boolean}) => {
+const Dialogs = (props: DialogsPagePropsType) => {
 
     let dialogsElements = props.dialogs.map(d => (<DialogItem id={d.id} name={d.name} src={d.src}/>))
     let messagesElements = props.messages.map(m => (<MessageItem id={m.id} message={m.message}/>))
@@ -22,8 +22,6 @@ const Dialogs = (props: DialogsPagePropsType & {isAuth: boolean}) => {
         props.onTextMessageChange(event.target.value)
             //props.dispatch(UpdateMessageActionCreator(event.target.value))
     }
-
-    if(!props.isAuth) return <Navigate to={'/login'}/>
     return (
 
         <div className={classes.dialogs}>

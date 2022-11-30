@@ -1,7 +1,13 @@
 import classes from "./MyPosts.module.css";
 import React from "react";
 import Post from "./Post/Post";
-import {MyPostsPropsType} from "../../../../state/store";
+import {PostsMapToDispatchPropsType} from "../../../../state/store";
+import {PostItemType} from "../../../../state/profilePageReducer";
+
+export type MyPostsPropsType = PostsMapToDispatchPropsType & {
+    posts: Array<PostItemType>
+    newPostText: string,
+}
 
 const MyPosts = (props: MyPostsPropsType) => {
 

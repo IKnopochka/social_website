@@ -11,7 +11,6 @@ type HeaderContainerPropsTypes = DataStateType & {
 
 class HeaderContainer extends React.Component<HeaderContainerPropsTypes> {
     componentDidMount() {
-        debugger
         this.props.setAuthUserDataThunkCreator()
         /*authAPI.getAuth().then(data => {
             if(data.resultCode === 0) {

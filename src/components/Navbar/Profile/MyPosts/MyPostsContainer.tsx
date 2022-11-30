@@ -1,5 +1,5 @@
 import React from "react";
-import {addPost, PostsPropsType, updateNewPostText} from "../../../../state/profilePageReducer";
+import {addPost, updateNewPostText} from "../../../../state/profilePageReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
@@ -15,13 +15,16 @@ const mapStateToProps = (state: RootReducerType) => {
 
 const mapDispatchToProps = (dispatch: Dispatch): PostsMapToDispatchPropsType => {
     return {
-        updateNewPostText: (text: string) => {dispatch(updateNewPostText(text))},
-        addPost: () => {dispatch(addPost()
-)
-}
+        updateNewPostText: (text: string) => {
+            dispatch(updateNewPostText(text))
+        },
+        addPost: () => {
+            dispatch(addPost()
+            )
+        }
     }
 }
 
-const SuperMyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
+const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
-export default SuperMyPostsContainer;
+export default MyPostsContainer;

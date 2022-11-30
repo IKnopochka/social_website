@@ -15,8 +15,7 @@ export type PostsMapToDispatchPropsType = {
     addPost: () => void
 }
 
-//for My Posts
-export type MyPostsPropsType = PostsPropsType & PostsMapToDispatchPropsType
+
 
 //dialogsPage types
 export type DialogItemProps = {

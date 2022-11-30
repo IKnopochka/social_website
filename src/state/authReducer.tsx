@@ -14,8 +14,9 @@ let initialState = {
     id: null,
     email: '',
     login: '',
-    isAuth: false
+    isAuth: true
 }
+
 
 export const AuthReducer = (state: DataStateType = initialState, action: ActionTypes): DataStateType => {
     switch (action.type) {

@@ -2,29 +2,41 @@ import React, {Component, ComponentType} from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
 import {
-    getProfileThunkCreator,
-    ProfileMapStateToPropsType,
+    getProfileThunkCreator, getStatusThunkCreator,
+    ProfilePropsType, updateStatusThunkCreator,
 } from "../../../state/profilePageReducer";
 import {RootReducerType} from "../../../state/redux-store";
 import {Params, Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
+import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
-type ProfileContainerPropsType = ProfileMapStateToPropsType & {
-    getProfileThunkCreator: (paramsUserId: string) => void
-    isAuth: boolean
+export type ProfileMapStateToPropsType = {
+    profile: ProfilePropsType
+    status: string
 }
 
-class ProfileContainer extends React.Component<ProfileContainerPropsType & {params: Params}> {
+type ProfileContainerPropsType = ProfileMapStateToPropsType & {
+    getProfileThunkCreator: (paramsUserId: number) => void
+    getStatusThunkCreator: (paramsUserId: number) => void
+    updateStatusThunkCreator: (status: string) => void
+
+}
+
+class ProfileContainer extends React.Component<ProfileContainerPropsType & { params: Params }> {
 
     componentDidMount() {
-        this.props.params.userId && this.props.getProfileThunkCreator(this.props.params.userId)
+        console.log(this)
+        let userId = Number(this.props.params.userId)
+        if (!userId) {
+            userId = 26794
+        }
+        this.props.getProfileThunkCreator(userId)
+        this.props.getStatusThunkCreator(userId)
     }
 
     render() {
-
-        if(!this.props.isAuth) return <Navigate to={'/login'}/>
-
         return (
-            <Profile {...this.props} profile={this.props.profile}/>
+            <Profile {...this.props} profile={this.props.profile} status={this.props.status} updateStatus={this.props.updateStatusThunkCreator}/>
         )
     }
 }
@@ -32,14 +44,13 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType & {para
 const mapStateToProps = (state: RootReducerType) => {
     return {
         profile: state.profilePage.profile,
-        isAuth: state.auth.isAuth
+        status: state.profilePage.status
     }
-
 }
 
-function withRouter(Component: ComponentType<ProfileContainerPropsType & {params: Params}> ) {
+function withRouter(Component: ComponentType<ProfileContainerPropsType & { params: Params }>) {
 
-    function ComponentWithRouterProp(props:ProfileContainerPropsType) {
+    function ComponentWithRouterProp(props: ProfileContainerPropsType) {
         return (
             <Component
                 {...props}
@@ -50,6 +61,16 @@ function withRouter(Component: ComponentType<ProfileContainerPropsType & {params
 
     return ComponentWithRouterProp;
 }
-/*let WithUrlDataContainerComponent = withRouter(ProfileContainer)*/
 
-export default connect(mapStateToProps, {getProfileThunkCreator})(withRouter(ProfileContainer));
+export default compose<React.ComponentType>(
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        getProfileThunkCreator,
+        getStatusThunkCreator,
+        updateStatusThunkCreator
+    }),
+    withRouter
+    )
+(ProfileContainer)
+
+//export default withAuthRedirect(connect(mapStateToProps, {getProfileThunkCreator})(withRouter(ProfileContainer)));

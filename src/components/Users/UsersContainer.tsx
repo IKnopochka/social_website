@@ -8,6 +8,8 @@ import {
 } from "../../state/usersReducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
+import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+import {compose} from "redux";
 
 export type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 
@@ -53,11 +55,12 @@ const mapStateToProps = (state: RootReducerType): AllUsersPropsType => {
     }
 }
 
-export default connect(mapStateToProps,
-    {
-        follow, unfollow, toggleButtonInProcess,
-        getUsersThunkCreator,
-        followUserThunkCreator,
-        unFollowUserThunkCreator
-    })
-(UsersContainer)
+export default compose<React.ComponentType>(
+    connect(mapStateToProps,
+        {
+            follow, unfollow, toggleButtonInProcess,
+            getUsersThunkCreator,
+            followUserThunkCreator,
+            unFollowUserThunkCreator
+        }),
+    withAuthRedirect)(UsersContainer)

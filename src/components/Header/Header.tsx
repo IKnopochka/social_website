@@ -4,7 +4,6 @@ import {NavLink} from "react-router-dom";
 import {DataStateType} from "../../state/authReducer";
 
 const Header = (props: DataStateType) => {
-    debugger
     return <header className={classes.header}>
         <img
             src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT26l6OGyGgJaVSmGk7jtXWZ80R9oGr1d1x9ecvESWGk3nCeiwYNL3PkQHF5cXRslTtigc&usqp=CAU'

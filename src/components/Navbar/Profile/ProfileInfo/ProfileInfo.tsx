@@ -1,17 +1,20 @@
 import React from "react";
 import classes from "./ProfileInfo.module.css";
-import {ProfileMapStateToPropsType} from "../../../../state/profilePageReducer";
-import Preloader from "../../../Preloader/Preloader";
 
-const ProfileInfo = (props: ProfileMapStateToPropsType) => {
+import Preloader from "../../../Preloader/Preloader";
+import {ProfileStatus} from "./ProfileStatus";
+import {ProfileMapStateToPropsType} from "../ProfileContainer";
+
+const ProfileInfo = (props: ProfileMapStateToPropsType  & {updateStatus: (status: string) => void}) => {
     if(!props.profile) return <Preloader/>
     return <div>
-            <div>
+            {/*<div>
                 <img
                     src='https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg'/>
-            </div>
+            </div>*/}
             <div className={classes.description}>
-                <img src={props.profile.photos.small}/>
+                <img src={props.profile.photos.small ? props.profile.photos.small : 'https://vjoy.cc/wp-content/uploads/2019/06/9-29.jpg'}/>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 ava + description
             </div>
         </div>
