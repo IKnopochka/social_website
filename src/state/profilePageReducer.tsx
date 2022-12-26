@@ -32,7 +32,6 @@ export type ProfilePropsType = null | {
 }
 export type PostsPropsType = {
     posts: Array<PostItemType>
-    newPostText: string,
     status: string
 }
 
@@ -44,7 +43,6 @@ const initialState: ProfilePagePropsType = {
         {id: 2, message: 'It is my first post', likeCount: 5},
         {id: 3, message: 'Welcome!', likeCount: 78}
     ],
-    newPostText: 'It_kamasutra',
     status: 'Curiosity',
     profile: {
         aboutMe: "Simple",
@@ -70,21 +68,19 @@ const initialState: ProfilePagePropsType = {
 }
 
 export type ActionTypes = ReturnType<typeof addPost> |
-    ReturnType<typeof updateNewPostText> |
     ReturnType<typeof setUserProfile> |
     ReturnType<typeof setStatus>
 
 const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
     switch (action.type) {
         case ('ADD-POST'):
-            const newPost: PostItemType = {
-                id: 9,
-                message: state.newPostText,
-                likeCount: 0
-            }
-            return {...state, posts: [...state.posts, newPost], newPostText: ""};
-        case ('UPDATE-NEW-POST-TEXT'):
-            return {...state, newPostText: action.newText};
+            return {
+                ...state, posts: [...state.posts, {
+                    id: 9,
+                    message: action.newPost,
+                    likeCount: 0
+                }]
+            };
         case 'SET-USER-PROFILE':
             return {...state, profile: action.profile};
         case 'SET-STATUS' :
@@ -95,10 +91,7 @@ const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: 
 };
 //{...state.profile, aboutMe: action.status}
 //Action Creators
-export const addPost = () => {
-    return {type: 'ADD-POST'} as const
-}
-export const updateNewPostText = (text: string) => ({type: 'UPDATE-NEW-POST-TEXT', newText: text} as const)
+export const addPost = (newPost: string) => ({type: 'ADD-POST', newPost} as const)
 export const setUserProfile = (profile: ProfilePropsType) => ({type: 'SET-USER-PROFILE', profile} as const)
 export const setStatus = (status: string) => ({type: 'SET-STATUS', status} as const)
 

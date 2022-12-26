@@ -3,10 +3,10 @@ import React from "react";
 import Post from "./Post/Post";
 import {PostsMapToDispatchPropsType} from "../../../../state/store";
 import {PostItemType} from "../../../../state/profilePageReducer";
+import PostsForm, {PostsFormPropsType} from "../PostsForm/PostsForm";
 
 export type MyPostsPropsType = PostsMapToDispatchPropsType & {
     posts: Array<PostItemType>
-    newPostText: string,
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -15,28 +15,15 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
-    const onAddPost = () => {
-        props.addPost()
-    }
-
-    const onPostChange = () => {
-        if (newPostElement.current) {
-            props.updateNewPostText(newPostElement.current.value)
-        }
+    const Submit = (data: PostsFormPropsType) => {
+        console.log(data)
+        props.addPost(data.post)
     }
 
     return (
         <div className={classes.textArea}>
             my posts
-            <div>
-                <div>
-                    <textarea ref={newPostElement} onChange={onPostChange} value={props.newPostText}/>
-                </div>
-                <div>
-                    <button onClick={onAddPost}>Add post</button>
-                    <button>Remove</button>
-                </div>
-            </div>
+            <PostsForm onSubmit={Submit}/>
             <div className={classes.posts}>
                 {postElements}
             </div>

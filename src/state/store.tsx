@@ -1,6 +1,4 @@
-import DialogsPageReducer, {AddMessageActionCreator, UpdateMessageActionCreator} from "./dialogsPageReducer";
-import ProfilePageReducer, {ActionTypes, addPost, PostsPropsType} from "./profilePageReducer";
-import SidebarReducer from "./sidebarReducer";
+import {ActionTypes,PostsPropsType} from "./profilePageReducer";
 import {Store} from "redux";
 import {RootReducerType} from "./redux-store";
 //StoreType
@@ -11,8 +9,7 @@ export type ReduxStorePropsType = {
 
 
 export type PostsMapToDispatchPropsType = {
-    updateNewPostText: (newPostText: string) => void
-    addPost: () => void
+    addPost: (post: string) => void
 }
 
 
@@ -30,11 +27,9 @@ export type MessageItemProps = {
 export type DialogsPropsType = {
     dialogs: Array<DialogItemProps>
     messages: Array<MessageItemProps>
-    newMessageText: string
 }
 export type DialogsMapToDispatchPropsType = {
-    onAddMessage: () => void
-    onTextMessageChange: (text: string) => void
+    onAddMessage: (message: string) => void
 }
 export type DialogsPagePropsType = DialogsMapToDispatchPropsType & DialogsPropsType
 
