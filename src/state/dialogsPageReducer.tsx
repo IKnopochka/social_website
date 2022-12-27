@@ -17,9 +17,9 @@ const initialState: DialogsPropsType = {
     ]
 }
 
-export type ActionTypes = ReturnType<typeof AddMessageActionCreator>
+export type DialogActionTypes = ReturnType<typeof AddMessageActionCreator>
 
-export const DialogsPageReducer = (state: DialogsPropsType = initialState, action: ActionTypes): DialogsPropsType => {
+export const DialogsPageReducer = (state: DialogsPropsType = initialState, action: DialogActionTypes): DialogsPropsType => {
     switch (action.type) {
         case('SEND-MESSAGE'):
             return {...state, messages: [...state.messages, {id: 7, message: action.newMessage}]}

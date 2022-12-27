@@ -6,13 +6,15 @@ import {
     ProfilePropsType, updateStatusThunkCreator,
 } from "../../../state/profilePageReducer";
 import {RootReducerType} from "../../../state/redux-store";
-import {Params, Navigate, useLocation, useNavigate, useParams} from "react-router-dom";
+import {Params, useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
 import {compose} from "redux";
 
 export type ProfileMapStateToPropsType = {
     profile: ProfilePropsType
     status: string
+    loggedUserId: number
+    isAuth: boolean
 }
 
 type ProfileContainerPropsType = ProfileMapStateToPropsType & {
@@ -28,7 +30,7 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType & { par
         console.log(this)
         let userId = Number(this.props.params.userId)
         if (!userId) {
-            userId = 26794
+            userId = this.props.loggedUserId
         }
         this.props.getProfileThunkCreator(userId)
         this.props.getStatusThunkCreator(userId)
@@ -44,7 +46,9 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType & { par
 const mapStateToProps = (state: RootReducerType) => {
     return {
         profile: state.profilePage.profile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        loggedUserId: state.auth.id,
+        isAuth: state.auth.isAuth
     }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {textareaField} from "../../../../assets/ValidationForm/RenderValidationField";
-import {maxLength20} from "../../../../assets/ValidationForm/validators";
+import {maxLength200} from "../../../../assets/ValidationForm/validators";
 
 export type PostsFormPropsType = {
     post: string
@@ -15,7 +15,7 @@ const PostsForm = (props: InjectedFormProps<PostsFormPropsType>) => {
                 component={textareaField}
                 name={'post'}
                 placeholder={'Add Post'}
-                validate={[maxLength20]}
+                validate={[maxLength200]}
             />
             <div><button>Add Post</button></div>
             <div><button>Remove</button></div>

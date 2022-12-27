@@ -25,7 +25,7 @@ export type AllUsersPropsType = {
     processingInProgress: Array<number>
 }
 
-type UsersReducerType = ReturnType<typeof follow> |
+export type UsersActionType = ReturnType<typeof follow> |
     ReturnType<typeof unfollow> |
     ReturnType<typeof setUsers> |
     ReturnType<typeof setCurrentPage> |
@@ -42,7 +42,7 @@ const usersInitialState: AllUsersPropsType = {
     processingInProgress: []
 }
 
-const UsersReducer = (state: AllUsersPropsType = usersInitialState, action: UsersReducerType): AllUsersPropsType => {
+const UsersReducer = (state: AllUsersPropsType = usersInitialState, action: UsersActionType): AllUsersPropsType => {
     switch (action.type) {
         case 'FOLLOW':
             return {...state, users: state.users.map(m => m.id === action.id ? {...m, followed: true} : m)}

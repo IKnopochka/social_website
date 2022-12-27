@@ -1,7 +1,7 @@
 import React from 'react';
 import  {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {textareaField} from "../../../../assets/ValidationForm/RenderValidationField";
-import {maxLength20} from "../../../../assets/ValidationForm/validators";
+import {maxLength200} from "../../../../assets/ValidationForm/validators";
 
 export type MessageFormPropsType = {
     message: string
@@ -15,7 +15,7 @@ const MessageForm = (props: InjectedFormProps<MessageFormPropsType>) => {
                 name={'message'}
                 component={textareaField}
                 placeholder={'Enter your message'}
-                validate={[maxLength20]}
+                validate={[maxLength200]}
             />
             <button>Add Message</button>
         </form>

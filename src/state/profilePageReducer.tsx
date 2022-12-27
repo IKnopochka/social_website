@@ -1,7 +1,6 @@
 import React from 'react';
 import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../API/API";
-import {ProfileMapStateToPropsType} from "../components/Navbar/Profile/ProfileContainer";
+import {profileAPI} from "../API/API";
 
 export type PostItemType = {
     id: number
@@ -24,7 +23,7 @@ export type ProfilePropsType = null | {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    userId: number
+    userId: number | null
     photos: {
         small: string
         large: string
@@ -35,7 +34,7 @@ export type PostsPropsType = {
     status: string
 }
 
-export type ProfilePagePropsType = ProfileMapStateToPropsType & PostsPropsType
+export type ProfilePagePropsType = {profile: ProfilePropsType} & PostsPropsType
 
 const initialState: ProfilePagePropsType = {
     posts: [
@@ -59,7 +58,7 @@ const initialState: ProfilePagePropsType = {
         lookingForAJob: true,
         lookingForAJobDescription: "string",
         fullName: "string",
-        userId: 25201,
+        userId: null,
         photos: {
             small: "",
             large: ""
@@ -67,11 +66,11 @@ const initialState: ProfilePagePropsType = {
     }
 }
 
-export type ActionTypes = ReturnType<typeof addPost> |
+export type ProfileActionTypes = ReturnType<typeof addPost> |
     ReturnType<typeof setUserProfile> |
     ReturnType<typeof setStatus>
 
-const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: ActionTypes): ProfilePagePropsType => {
+const ProfilePageReducer = (state: ProfilePagePropsType = initialState, action: ProfileActionTypes): ProfilePagePropsType => {
     switch (action.type) {
         case ('ADD-POST'):
             return {

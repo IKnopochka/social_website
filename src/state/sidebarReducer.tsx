@@ -1,6 +1,6 @@
 import React from 'react';
 import {SidebarItemProps} from "./store";
-import {ActionTypes} from "./profilePageReducer";
+import {ProfileActionTypes} from "./profilePageReducer";
 
 const initialState: Array<SidebarItemProps>= [
     {id: 1,  name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
@@ -8,7 +8,9 @@ const initialState: Array<SidebarItemProps>= [
     {id: 3,  name: 'Kathryn', src: 'https://vjoy.cc/wp-content/uploads/2019/06/4-30.jpg'}
 ]
 
-const SidebarReducer = (state: Array<SidebarItemProps> = initialState, action: ActionTypes): Array<SidebarItemProps> => {
+export type SidebarActionType = ProfileActionTypes
+
+const SidebarReducer = (state: Array<SidebarItemProps> = initialState, action: SidebarActionType): Array<SidebarItemProps> => {
     return state
 };
 

@@ -1,4 +1,4 @@
-import {ActionTypes,PostsPropsType} from "./profilePageReducer";
+import {ProfileActionTypes,PostsPropsType} from "./profilePageReducer";
 import {Store} from "redux";
 import {RootReducerType} from "./redux-store";
 //StoreType
@@ -57,7 +57,7 @@ export type StorePropsType = {
     subscribe: (observer: () => void) => void,
     getState: () => void
 
-    dispatch: (action: ActionTypes) => void
+    dispatch: (action: ProfileActionTypes) => void
 
 }
 //store props types summary

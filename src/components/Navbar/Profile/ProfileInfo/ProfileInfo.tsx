@@ -3,9 +3,15 @@ import classes from "./ProfileInfo.module.css";
 
 import Preloader from "../../../Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
-import {ProfileMapStateToPropsType} from "../ProfileContainer";
+import {ProfilePropsType} from "../../../../state/profilePageReducer";
 
-const ProfileInfo = (props: ProfileMapStateToPropsType  & {updateStatus: (status: string) => void}) => {
+type ProfileInfoProps = {
+    profile: ProfilePropsType
+    status: string
+    updateStatus: (status: string) => void
+}
+
+const ProfileInfo = (props: ProfileInfoProps) => {
     if(!props.profile) return <Preloader/>
     return <div>
             {/*<div>
