@@ -12,7 +12,6 @@ const Dialogs = (props: DialogsPagePropsType) => {
     let messagesElements = props.messages.map(m => (<MessageItem id={m.id} message={m.message}/>))
 
     const Submit = (data: MessageFormPropsType) => {
-        console.log(data)
         props.onAddMessage(data.message)
     }
 

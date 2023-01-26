@@ -43,7 +43,6 @@ export const profileAPI = {
     getProfile(userId: number) {
         return instance.get(`profile/${userId}`)
             .then(response => (
-                console.log(response),
                     response.data
             ))
     },

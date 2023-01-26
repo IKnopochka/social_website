@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {RootReducerType} from "../../state/redux-store";
+import {AppRootStateType} from "../../state/redux-store";
 import {
     follow,
     unfollow,
@@ -44,7 +44,7 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 }
 
 
-const mapStateToProps = (state: RootReducerType): AllUsersPropsType => {
+const mapStateToProps = (state: AppRootStateType): AllUsersPropsType => {
     return {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,

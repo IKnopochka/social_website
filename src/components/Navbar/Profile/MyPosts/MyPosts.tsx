@@ -16,7 +16,6 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>();
 
     const Submit = (data: PostsFormPropsType) => {
-        console.log(data)
         props.addPost(data.post)
     }
 

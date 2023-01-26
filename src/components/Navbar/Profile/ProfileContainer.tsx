@@ -5,10 +5,11 @@ import {
     getProfileThunkCreator, getStatusThunkCreator,
     ProfilePropsType, updateStatusThunkCreator,
 } from "../../../state/profilePageReducer";
-import {RootReducerType} from "../../../state/redux-store";
-import {Params, useParams} from "react-router-dom";
+import {AppRootStateType} from "../../../state/redux-store";
+import {Params} from "react-router-dom";
 import {withAuthRedirect} from "../../../HOC/withAuthRedirect";
 import {compose} from "redux";
+import {withRouter} from "../../../HOC/withRouter";
 
 export type ProfileMapStateToPropsType = {
     profile: ProfilePropsType
@@ -27,7 +28,6 @@ type ProfileContainerPropsType = ProfileMapStateToPropsType & {
 class ProfileContainer extends React.Component<ProfileContainerPropsType & { params: Params }> {
 
     componentDidMount() {
-        console.log(this)
         let userId = Number(this.props.params.userId)
         if (!userId) {
             userId = this.props.loggedUserId
@@ -43,27 +43,13 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType & { par
     }
 }
 
-const mapStateToProps = (state: RootReducerType) => {
+const mapStateToProps = (state: AppRootStateType) => {
     return {
         profile: state.profilePage.profile,
         status: state.profilePage.status,
         loggedUserId: state.auth.id,
         isAuth: state.auth.isAuth
     }
-}
-
-function withRouter(Component: ComponentType<ProfileContainerPropsType & { params: Params }>) {
-
-    function ComponentWithRouterProp(props: ProfileContainerPropsType) {
-        return (
-            <Component
-                {...props}
-                params={useParams()}
-            />
-        );
-    }
-
-    return ComponentWithRouterProp;
 }
 
 export default compose<React.ComponentType>(

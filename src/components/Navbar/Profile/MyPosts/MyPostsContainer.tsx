@@ -3,10 +3,10 @@ import {addPost} from "../../../../state/profilePageReducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-import {RootReducerType} from "../../../../state/redux-store";
+import {AppRootStateType} from "../../../../state/redux-store";
 import {PostsMapToDispatchPropsType} from "../../../../state/store";
 
-const mapStateToProps = (state: RootReducerType) => {
+const mapStateToProps = (state: AppRootStateType) => {
     return {
         posts: state.profilePage.posts
     }

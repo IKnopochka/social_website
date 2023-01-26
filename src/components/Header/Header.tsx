@@ -1,10 +1,10 @@
 import React from "react";
 import classes from './Header.module.css';
 import {NavLink} from "react-router-dom";
-import {HeaderContainerPropsTypes} from "./HeaderContainer";
+import {HeaderContainerPropsType} from "./HeaderContainer";
 
 
-const Header = (props: HeaderContainerPropsTypes) => {
+const Header = (props: HeaderContainerPropsType) => {
     return <header className={classes.header}>
         <img
             src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT26l6OGyGgJaVSmGk7jtXWZ80R9oGr1d1x9ecvESWGk3nCeiwYNL3PkQHF5cXRslTtigc&usqp=CAU'
@@ -13,13 +13,11 @@ const Header = (props: HeaderContainerPropsTypes) => {
             {props.isAuth
                 ? <div>
                     {props.login}
-                    <div><button onClick={props.logoutTC}>Logout</button></div>
+                    <div><button onClick={props.logout}>Logout</button></div>
             </div>
                 : <NavLink to={'/auth'}>Login</NavLink>}
 
         </div>
-
-
     </header>;
 }
 

@@ -1,21 +1,15 @@
 import React from 'react';
-import {Dispatch} from "redux";
 import {authAPI} from "../API/API";
 import {AppThunk} from "./redux-store";
-import {FormAction, stopSubmit} from "redux-form";
+import {stopSubmit} from "redux-form";
 
-export type DataStateType = {
-    id: number | null
-    email: string | null
-    login: string | null
-    isAuth: boolean
-}
+export type DataStateType = typeof initialState
 export type AuthActionTypes = ReturnType<typeof setAuthUserData>
 
 let initialState = {
     id: null,
     email: null,
-    login: null,
+    login: false,
     isAuth: false
 }
 
@@ -28,27 +22,28 @@ export const AuthReducer = (state: DataStateType = initialState, action: AuthAct
             return {...state}
     }
 };
-
+//ActionCreators
 export const setAuthUserData = (data: DataStateType, isAuth: boolean) => ({type: "SET-USER-DATA", data, isAuth} as const)
 
-export const getAuthUserDataTC = (): AppThunk => dispatch => {
-    authAPI.authMe().then(data => {
+//ThunkCreators
+export const getAuthUserData = (): AppThunk<Promise<void | number>> => dispatch => {
+    return authAPI.authMe()
+        .then(data => {
         if (data.resultCode === 0) {
             dispatch(setAuthUserData(data.data, true))
         }
     })
 }
-
-export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch<any>) => {
+export const login = (email: string, password: string, rememberMe: boolean):AppThunk => dispatch => {
     authAPI.login(email, password, rememberMe).then(data => {
         if (data.resultCode === 0) {
-            dispatch(getAuthUserDataTC())
+            dispatch(getAuthUserData())
         } else{
             dispatch(stopSubmit('Login', {_error: data.messages[0]}))
         }
     })
 }
-export const logoutTC = ():AppThunk => dispatch => {
+export const logout = ():AppThunk => dispatch => {
     authAPI.logout().then(data => {
         if (data.resultCode === 0) {
             dispatch(setAuthUserData(initialState,false))

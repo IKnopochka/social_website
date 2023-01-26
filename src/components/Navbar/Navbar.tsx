@@ -1,17 +1,8 @@
 import React from "react";
 import classes from './Navbar.module.css';
 import {NavLink} from "react-router-dom";
-import {Friends} from "./Friends/Friends";
-import {SidebarPropsType} from "../../state/store";
 
-/*let classes = {
-    'nav': 'navClass'
-    'item': 'itemClass'
-}
-{'${classes.active} ${classes.item}'}
-*/
-
-const Navbar = (props: SidebarPropsType) => {
+const Navbar = () => {
     return (
         <div className={classes.nav}>
             <div>
@@ -42,10 +33,6 @@ const Navbar = (props: SidebarPropsType) => {
 
                     </div>
                 </nav>
-            </div>
-            <div >
-                <div>Friends</div>
-                <div>{props.sidebar.map(s => (<Friends id={s.id} name={s.name} src={s.src} />))}</div>
             </div>
         </div>
     )
