@@ -10,6 +10,7 @@ import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
+import {getUsersSelector} from "../../state/userSelectors";
 
 export type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 
@@ -46,7 +47,7 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 
 const mapStateToProps = (state: AppRootStateType): AllUsersPropsType => {
     return {
-        users: state.usersPage.users,
+        users: getUsersSelector(state),
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
