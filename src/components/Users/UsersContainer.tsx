@@ -10,7 +10,7 @@ import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";
 import {compose} from "redux";
-import {getUsersSelector} from "../../state/userSelectors";
+import {getUsersSelectorFake} from "../../state/userSelectors";
 
 export type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 
@@ -26,6 +26,7 @@ export type MapToDispatchPropsType = {
 class UsersContainer extends React.Component<UsersPagePropsType> {
 
     componentDidMount() {
+        console.log('user Cont comp did mount')
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
     }
 
@@ -34,6 +35,7 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
     }
 
     render() {
+        console.log('user Cont render')
         return <>
             {this.props.isFetching ? <Preloader/> : null}
 
@@ -46,8 +48,9 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 
 
 const mapStateToProps = (state: AppRootStateType): AllUsersPropsType => {
+    console.log('MapStateTpProps USER container')
     return {
-        users: getUsersSelector(state),
+        users: getUsersSelectorFake(state),
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,

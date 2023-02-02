@@ -13,6 +13,8 @@ export const AppReducer = (state: initialStateType = initialState, action: AppAc
     switch (action.type) {
         case "INITIALIZED-SUCCESS":
             return {...state, initialized: true}
+        case 'FAKE':
+            return {...state}
         default:
             return {...state}
     }
@@ -24,7 +26,6 @@ export const initializedSuccess = () => ({type: "INITIALIZED-SUCCESS"} as const)
 //ThunkCreators
 export const initializeApp = (): AppThunk => dispatch => {
     const promise = dispatch(getAuthUserData())
-    console.log(promise)
     promise.then(() => {
         dispatch(initializedSuccess())
     })
@@ -32,5 +33,5 @@ export const initializeApp = (): AppThunk => dispatch => {
 
 //Types
 export type initialStateType = typeof initialState
-export type AppActionType = ReturnType<typeof initializedSuccess>
+export type AppActionType = ReturnType<typeof initializedSuccess> | any
 

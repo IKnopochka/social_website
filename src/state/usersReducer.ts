@@ -94,9 +94,9 @@ export const getUsersThunkCreator = (currentPageNumber: number, pageSize: number
 }
 
 export const followUserThunkCreator = (id: number) => {
-    debugger
+
     return (dispatch: Dispatch) => {
-        debugger
+
         dispatch(toggleButtonInProcess(true, id))
         usersAPI.followUser(id).then(data => {
             if (data.resultCode == 0) {
@@ -107,9 +107,9 @@ export const followUserThunkCreator = (id: number) => {
     }
 }
 export const unFollowUserThunkCreator = (id: number) => {
-    debugger
+
     return (dispatch: Dispatch) => {
-        debugger
+
         dispatch(toggleButtonInProcess(true, id))
         usersAPI.unfollowUser(id).then(data => {
             if (data.resultCode == 0) {

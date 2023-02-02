@@ -4,6 +4,7 @@ import classes from "./ProfileInfo.module.css";
 import Preloader from "../../../Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
 import {ProfilePropsType} from "../../../../state/profilePageReducer";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoProps = {
     profile: ProfilePropsType
@@ -20,7 +21,8 @@ const ProfileInfo = (props: ProfileInfoProps) => {
             </div>*/}
             <div className={classes.description}>
                 <img src={props.profile.photos.small ? props.profile.photos.small : 'https://vjoy.cc/wp-content/uploads/2019/06/9-29.jpg'}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}/>
+                {/*<ProfileStatus status={props.status} updateStatus={props.updateStatus}/>*/}
                 ava + description
             </div>
         </div>
