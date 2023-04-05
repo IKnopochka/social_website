@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {compose} from "redux";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import News from "./components/Navbar/News/News";
 import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
@@ -12,11 +12,10 @@ import Login from "./components/Login/Login";
 import ProfileContainer from "./components/Navbar/Profile/ProfileContainer";
 import DialogsContainer from "./components/Navbar/Messages/DialogsContainer";
 import {connect} from "react-redux";
-
-import {AppRootStateType} from "./state/redux-store";
 import {withRouter} from "./HOC/withRouter";
 import {initializeApp} from "./state/appReducer";
 import Preloader from "./components/Preloader/Preloader";
+import {AppRootStateType} from "./state/redux-store";
 
 class App extends React.Component<AppPropsType> {
     componentDidMount() {
@@ -32,6 +31,8 @@ class App extends React.Component<AppPropsType> {
                     <Navbar/>
                     <div className='app-wrapper-content'>
                         <Routes>
+                            <Route path={'/'} element={<Navigate to={'/profile'}/>}/>
+
                             <Route path={'/profile/:userId'} element={<ProfileContainer/>}/>
                             <Route path={'/profile'} element={<ProfileContainer/>}/>
                             <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>

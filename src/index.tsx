@@ -7,12 +7,6 @@ import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 
 
-setInterval(() => {
-    store.dispatch({type: 'FAKE'})
-}, 2000)
-
-
-
 /*export const renderTree = (store: Store<RootReducerType>) => {*/
     ReactDOM.render(
         <React.StrictMode>
@@ -31,6 +25,15 @@ setInterval(() => {
 });*/
 
 /*renderTree(store);*/
+
+
+// module.exports = {
+//     preset: 'ts-jest',
+//     transform: {
+//         '^.+\\.(ts|tsx)?$': 'ts-jest',
+//         "^.+\\.(js|jsx)$": "babel-jest",
+//     }
+// };
 
 
 // If you want to start measuring performance in your app, pass a function

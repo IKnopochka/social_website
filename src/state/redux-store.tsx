@@ -1,15 +1,16 @@
-import {AnyAction, applyMiddleware, combineReducers, legacy_createStore, Store} from "redux";
-import ProfilePageReducer, {ProfileActionTypes} from "./profilePageReducer";
+import {AnyAction, applyMiddleware, combineReducers, legacy_createStore, Store, compose } from "redux";
+import profileReducer, {ProfileActionTypes} from "./profile-reducer";
 import DialogsPageReducer, {DialogActionTypes} from "./dialogsPageReducer";
 import SidebarReducer, {SidebarActionType} from "./sidebarReducer";
-import UsersReducer, {UsersActionType} from "./usersReducer";
+import UsersReducer, {UsersActionType} from "./users-reducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import {FormAction, reducer as formReducer} from "redux-form"
 import {AuthActionTypes, AuthReducer} from "./authReducer";
 import {AppActionType, AppReducer} from "./appReducer";
+import { composeWithDevTools } from '@redux-devtools/extension';
 
 const rootReducer = combineReducers({
-    profilePage: ProfilePageReducer,
+    profilePage: profileReducer,
     dialogsPage: DialogsPageReducer,
     sidebar: SidebarReducer,
     usersPage: UsersReducer,
@@ -17,7 +18,10 @@ const rootReducer = combineReducers({
     form: formReducer,
     app: AppReducer
 })
-export const store: Store<AppRootStateType> = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
+//export const store: Store<AppRootStateType> = legacy_createStore(rootReducer, applyMiddleware(thunkMiddleware))
+
+export const store: Store<AppRootStateType> = legacy_createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware)));
+
 
 //types
 export type AppRootStateType = ReturnType<typeof rootReducer>

@@ -5,7 +5,7 @@ import {
     follow,
     unfollow,
     AllUsersPropsType, toggleButtonInProcess, getUsersThunkCreator, followUserThunkCreator, unFollowUserThunkCreator
-} from "../../state/usersReducer";
+} from "../../state/users-reducer";
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
 import {withAuthRedirect} from "../../HOC/withAuthRedirect";

@@ -3,7 +3,7 @@ import classes from "./ProfileInfo.module.css";
 
 import Preloader from "../../../Preloader/Preloader";
 import {ProfileStatus} from "./ProfileStatus";
-import {ProfilePropsType} from "../../../../state/profilePageReducer";
+import {ProfilePropsType} from "../../../../state/profile-reducer";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileInfoProps = {

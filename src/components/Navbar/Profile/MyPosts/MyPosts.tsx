@@ -2,7 +2,7 @@ import classes from "./MyPosts.module.css";
 import React from "react";
 import Post from "./Post/Post";
 import {PostsMapToDispatchPropsType} from "../../../../state/store";
-import {PostItemType} from "../../../../state/profilePageReducer";
+import {PostItemType} from "../../../../state/profile-reducer";
 import PostsForm, {PostsFormPropsType} from "../PostsForm/PostsForm";
 
 export type MyPostsPropsType = PostsMapToDispatchPropsType & {

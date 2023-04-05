@@ -1,5 +1,5 @@
-import axios from "axios";
-
+import axios, {AxiosResponse} from "axios";
+import {UserPropsType} from "../state/users-reducer";
 
 const instance = axios.create({
     withCredentials: true,
@@ -11,8 +11,10 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
+        return instance.get<ResponseType<UserPropsType[]>>(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => response.data)
+
+
     },
     followUser(userId: number) {
         return instance.post(`follow/${userId}`)
@@ -53,4 +55,11 @@ export const profileAPI = {
         return instance.put('profile/status', {status: status})
     }
 
+}
+
+//types
+type ResponseType<D = {}> = {
+    items: D
+    totalCount: number
+    error: string
 }

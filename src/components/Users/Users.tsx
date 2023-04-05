@@ -3,19 +3,15 @@ import userPhoto from "../../assets/images/images.png";
 import styles from "./Users.module.css";
 import {NavLink} from "react-router-dom";
 import {UsersPagePropsType} from "./UsersContainer";
+import {Paginator} from "./Paginator";
 
-type UsersPropsType = {
+export type UsersPropsType = {
         onPageChanged: (p: number) => void
     }
     & UsersPagePropsType
 
 
 const Users = ({onPageChanged, ...props}: UsersPropsType) => {
-        let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-        let pages = []
-        for (let i = 0; i < pagesCount; i++) {
-            pages.push(i + 1)
-        }
 
         let userElement = props.users.map(m => <div key={m.id}>
         <span>
@@ -45,14 +41,8 @@ const Users = ({onPageChanged, ...props}: UsersPropsType) => {
         </span>
 
         </div>)
-
-        return (<div>
-                {pages.map(p => {
-                    return <span className={props.currentPage === p ? styles.selectedPage : ''}
-                                 onClick={() => {
-                                     onPageChanged(p)
-                                 }}>{p}</span>
-                })}
+    return (<div>
+                <Paginator onPageChanged={onPageChanged} {...props}/>
                 <div>{userElement}</div>
             </div>
 
