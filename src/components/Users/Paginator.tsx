@@ -1,24 +1,40 @@
-import React from 'react';
-import userPhoto from "../../assets/images/images.png";
+import React, {useState} from 'react';
 import styles from "./Users.module.css";
-import {NavLink} from "react-router-dom";
-import {UsersPagePropsType} from "./UsersContainer";
 import {UsersPropsType} from "./Users";
 
-export const Paginator = ({onPageChanged, totalUsersCount, pageSize, currentPage, ...props}: UsersPropsType) => {
-    let pagesCount = Math.ceil(totalUsersCount / pageSize)
+export const Paginator = ({onPageChanged, totalItemsCount, itemsPerPage, currentPage, pagesPerPortion, ...props}: UsersPropsType) => {
+    let pagesTotalNumber = Math.ceil(totalItemsCount / itemsPerPage)
     let pages = []
-    for (let i = 0; i < pagesCount; i++) {
+    for (let i = 0; i < pagesTotalNumber; i++) {
         pages.push(i + 1)
     }
 
+    const [portionNumber, setPortionNumber] = useState(1)
+
+    const totalPortionsNumber = Math.ceil(pagesTotalNumber / pagesPerPortion)
+    const leftPortionSidePageNumber = (portionNumber - 1) * pagesPerPortion + 1
+    const rightPortionSidePageNumber = portionNumber * pagesPerPortion
+
+    const previousPageHandler = () => {
+        setPortionNumber(portionNumber - 1)
+    }
+    const nextPageHandler = () => {
+        setPortionNumber(portionNumber + 1)
+    }
+
     return <div>
-        {pages.map(p => {
-            return <span className={currentPage === p ? styles.selectedPage : ''}
-                         onClick={() => {
-                             onPageChanged(p)
-                         }}>{p}</span>
-        })}
+        {portionNumber > 1 && <button onClick={previousPageHandler}>previous</button>}
+        {
+            pages
+                .filter(p => p >= leftPortionSidePageNumber && p <= rightPortionSidePageNumber)
+                .map(p => {
+                    return <span className={currentPage === p ? styles.selectedPage : styles.page}
+                                 onClick={() => {
+                                     onPageChanged(p)
+                                 }}>{p}</span>
+                })
+        }
+        {portionNumber < totalPortionsNumber && <button onClick={nextPageHandler}>next</button>}
     </div>
 }
 

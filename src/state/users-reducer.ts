@@ -1,14 +1,15 @@
-import {usersAPI} from "../API/API";
+import {usersAPI} from "API/API";
 import {Dispatch} from "redux";
-import {updateObjectInArray} from "../assets/object-helpers";
+import {updateObjectInArray} from "assets/object-helpers";
 
-const usersInitialState: AllUsersPropsType = {
-    users: [],
-    pageSize: 5,
-    totalUsersCount: 0,
+const usersInitialState = {
+    users: [] as Array<UserPropsType>,
+    itemsPerPage: 5,
+    totalItemsCount: 0,
     currentPage: 1,
     isFetching: true,
-    processingInProgress: []
+    processingInProgress: [] as Array<number>,
+    pagesPerPortion: 10
 }
 
 const UsersReducer = (state: AllUsersPropsType = usersInitialState, action: UsersActionType): AllUsersPropsType => {
@@ -23,7 +24,7 @@ const UsersReducer = (state: AllUsersPropsType = usersInitialState, action: User
         case 'SET-CURRENT-PAGE':
             return {...state, currentPage: action.currentPage}
         case 'SET-TOTAL-COUNT':
-            return {...state, totalUsersCount: action.totalUsers}
+            return {...state, totalItemsCount: action.totalUsers}
         case 'TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
         case 'TOGGLE-PROCESSING-IN-PROGRESS':
@@ -95,14 +96,15 @@ export type UserPropsType = {
     location?: LocationPropsType
     followed: boolean
 }
-export type AllUsersPropsType = {
-    users: Array<UserPropsType>
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
-    isFetching: boolean
-    processingInProgress: Array<number>
-}
+// export type AllUsersPropsType = {
+//     users: Array<UserPropsType>
+//     itemsPerPage: number
+//     totalItemsCount: number
+//     currentPage: number
+//     isFetching: boolean
+//     processingInProgress: Array<number>
+// }
+export type AllUsersPropsType = typeof usersInitialState
 
 export type UsersActionType = ReturnType<typeof follow> |
     ReturnType<typeof unfollow> |

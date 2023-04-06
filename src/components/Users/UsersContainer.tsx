@@ -1,16 +1,21 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {AppRootStateType} from "../../state/redux-store";
-import {
-    follow,
-    unfollow,
-    AllUsersPropsType, toggleButtonInProcess, getUsersThunkCreator, followUserThunkCreator, unFollowUserThunkCreator
-} from "../../state/users-reducer";
+
+
 import Users from "./Users";
 import Preloader from "../Preloader/Preloader";
-import {withAuthRedirect} from "../../HOC/withAuthRedirect";
+
 import {compose} from "redux";
-import {getUsersSelectorFake} from "../../state/userSelectors";
+import {
+    AllUsersPropsType, follow,
+    followUserThunkCreator, getUsersThunkCreator,
+    toggleButtonInProcess, unfollow,
+    unFollowUserThunkCreator
+} from "state/users-reducer";
+import {getUsersSelectorFake} from "state/userSelectors";
+import {AppRootStateType} from "state/redux-store";
+import {withAuthRedirect} from "HOC/withAuthRedirect";
+
 
 export type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
 
@@ -27,11 +32,11 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 
     componentDidMount() {
         console.log('user Cont comp did mount')
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+        this.props.getUsersThunkCreator(this.props.currentPage, this.props.itemsPerPage)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
+        this.props.getUsersThunkCreator(pageNumber, this.props.itemsPerPage)
     }
 
     render() {
@@ -40,7 +45,7 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
             {this.props.isFetching ? <Preloader/> : null}
 
             <Users onPageChanged={this.onPageChanged}
-                {...this.props}
+                   {...this.props}
             />
         </>
     }
@@ -51,11 +56,12 @@ const mapStateToProps = (state: AppRootStateType): AllUsersPropsType => {
     console.log('MapStateTpProps USER container')
     return {
         users: getUsersSelectorFake(state),
-        pageSize: state.usersPage.pageSize,
-        totalUsersCount: state.usersPage.totalUsersCount,
+        itemsPerPage: state.usersPage.itemsPerPage,
+        totalItemsCount: state.usersPage.totalItemsCount,
         currentPage: state.usersPage.currentPage,
         isFetching: state.usersPage.isFetching,
-        processingInProgress: state.usersPage.processingInProgress
+        processingInProgress: state.usersPage.processingInProgress,
+        pagesPerPortion: state.usersPage.pagesPerPortion
     }
 }
 
