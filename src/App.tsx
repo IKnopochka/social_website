@@ -30,7 +30,7 @@ class App extends React.Component<AppPropsType> {
     render() {
         if (!this.props.initialized) return <Preloader/>
         return (
-            <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <HashRouter>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <Navbar/>
@@ -52,7 +52,7 @@ class App extends React.Component<AppPropsType> {
                         </Routes>
                     </div>
                 </div>
-            </BrowserRouter>
+            </HashRouter>
         );
     }
 }
