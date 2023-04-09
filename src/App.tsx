@@ -2,7 +2,7 @@ import React, {Suspense} from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
 import {compose} from "redux";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, HashRouter, Navigate, Route, Routes} from "react-router-dom";
 import News from "./components/Navbar/News/News";
 import Music from "./components/Navbar/Music/Music";
 import Settings from "./components/Navbar/Settings/Settings";
@@ -30,7 +30,7 @@ class App extends React.Component<AppPropsType> {
     render() {
         if (!this.props.initialized) return <Preloader/>
         return (
-            <BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <Navbar/>
