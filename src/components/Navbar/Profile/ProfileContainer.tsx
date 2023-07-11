@@ -27,13 +27,21 @@ type ProfileContainerPropsType = ProfileMapStateToPropsType & {
 
 class ProfileContainer extends React.Component<ProfileContainerPropsType & { params: Params }> {
 
-    componentDidMount() {
+    refreshProfile() {
         let userId = Number(this.props.params.userId)
         if (!userId) {
             userId = this.props.loggedUserId
         }
         this.props.getProfileThunkCreator(userId)
         this.props.getStatusThunkCreator(userId)
+    }
+
+    componentDidMount() {
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfileContainerPropsType & { params: Params }>, prevState: Readonly<{}>) {
+        if(prevProps.profile?.userId !== this.props.profile?.userId) this.refreshProfile()
     }
 
     render() {

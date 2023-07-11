@@ -1,5 +1,5 @@
 import React from 'react';
-import userPhoto from "../../assets/images/images.png";
+import userPhoto from "assets/images/logo_small.png";
 import styles from "./Users.module.css";
 import {NavLink} from "react-router-dom";
 import {UsersPagePropsType} from "./UsersContainer";

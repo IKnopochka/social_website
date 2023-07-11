@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {HeaderContainerPropsType} from "./HeaderContainer";
 
 
+
 const Header = (props: HeaderContainerPropsType) => {
     return <header className={classes.header}>
         <img
