@@ -1,14 +1,28 @@
 .header {
     grid-area: h;
-    background-color: aqua;
+    background-color: #2c2c2c;
+    display: flex;
+    justify-content: space-between;
+}
+.logoBox {
+    display: flex;
+    align-items: center;
+    margin: 5px;
 }
 
-.header img {
-    height: 60px;
+.logoBox img {
+    height: 100%;
 }
+
+.logoBox h2 {
+    color: #ffffff;
+    font-family: cursive;
+}
+
 .loginBlock {
     float: right;
 }
+
 .loginBlock a {
     color: black;
 }

@@ -5,19 +5,22 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
+import {HashRouter} from "react-router-dom";
 
 
 /*export const renderTree = (store: Store<RootReducerType>) => {*/
-    ReactDOM.render(
-        <React.StrictMode>
-                <Provider store={store}>
-                    <App/>
-                </Provider>
+ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <HashRouter>
+                <App/>
+            </HashRouter>
+        </Provider>
 
 
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
+    </React.StrictMode>,
+    document.getElementById('root')
+);
 /*}*/
 
 /*store.subscribe(() => {

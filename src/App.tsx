@@ -20,6 +20,9 @@ import {withRouter} from "HOC/withRouter";
 import {initializeApp} from "state/appReducer";
 import Preloader from "./components/Preloader/Preloader";
 import {AppRootStateType} from "state/redux-store";
+import {Layout} from "common/header/Layout";
+import {AppRoutes, PATH} from "common/routes/AppRoutes";
+import {getAuthUserData} from "state/authReducer";
 
 class App extends React.Component<AppPropsType> {
     componentDidMount() {
@@ -30,37 +33,22 @@ class App extends React.Component<AppPropsType> {
     render() {
         if (!this.props.initialized) return <Preloader/>
 
+        console.log(this.props.isAuth)
+
         return (
-            <HashRouter>
-                <div className='app-wrapper'>
-                    <HeaderContainer/>
-                    <Navbar/>
-                    <div className='app-wrapper-content'>
-                        <Suspense fallback={<div>Loading...</div>}>
-                            <Routes>
-                                <Route path={'/dialogs/*'} element={<DialogsContainer/>}/>
-                                <Route path={'/users'} element={<UsersContainer/>}/>
-                            </Routes>
-                        </Suspense>
-                        <Routes>
-                            <Route path={'/'} element={<Navigate to={'/profile'}/>}/>
-                            <Route path={'/profile/:userId'} element={<ProfileContainer/>}/>
-                            <Route path={'/profile'} element={<ProfileContainer/>}/>
-                            <Route path={'/news'} element={<News/>}/>
-                            <Route path={'/music'} element={<Music/>}/>
-                            <Route path={'/settings'} element={<Settings/>}/>
-                            <Route path={'/login'} element={<Login/>}/>
-                        </Routes>
-                    </div>
-                </div>
-            </HashRouter>
+            <div className='app-wrapper'>
+                <HeaderContainer/>
+                {this.props.isAuth && <Navbar/>}
+                <AppRoutes/>
+            </div>
         );
     }
 }
 
 const mapStateToProps = (state: AppRootStateType) => {
     return {
-        initialized: state.app.initialized
+        initialized: state.app.initialized,
+        isAuth: state.auth.isAuth
     }
 }
 
@@ -73,5 +61,6 @@ export default compose<React.ComponentType>(
 type AppPropsType = {
     initializeApp: () => void
     initialized: boolean
+    isAuth: boolean
 }
 //& AppRootStateType

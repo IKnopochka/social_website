@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {login} from "../../state/authReducer";
 import {Navigate} from "react-router-dom";
 import {AppRootStateType} from "../../state/redux-store";
+import {PATH} from "common/routes/AppRoutes";
 
 type mapStateToPropsType = {
     isAuth: boolean
@@ -17,7 +18,7 @@ const Login = (props: LoginProps) => {
         props.login(email, password, rememberMe)
     }
 
-    if (props.isAuth) return <Navigate to='/profile'/>
+    if (props.isAuth) return <Navigate to={PATH.PROFILE}/>
     return (
         <div>
             <div><h1>Login</h1></div>
