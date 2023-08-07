@@ -1,0 +1,61 @@
+.paperContainer {
+    text-align: center;
+    color: #2c2c2c;
+}
+
+.title {
+    margin-top: 35px;
+    font-family: Montserrat, sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 32px;
+    color: #000;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 33px;
+}
+
+.rememberMe {
+    align-self: flex-start;
+    margin-top: 24px;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 17px;
+    text-align: center;
+}
+
+.forgot {
+    align-self: flex-end;
+    margin-top: 29px;
+    margin-right: 5px;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    font-style: normal;
+    line-height: 17px;
+    color: #2c2c2c;
+    text-align: center;
+    text-decoration: none;
+}
+
+.already {
+    margin-top: 31px;
+    font-family: Montserrat, sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 24px;
+    color: #2c2c2c;
+    text-align: center;
+}
+.already a {
+    color: #E76732FF;
+    margin-left: 5px;
+}

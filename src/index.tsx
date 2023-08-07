@@ -1,8 +1,8 @@
 import React from 'react';
 import './index.css';
-import {store} from "./state/redux-store";
+import {store} from "s1-main/m3-dal/store";
 import ReactDOM from 'react-dom';
-import App from './App';
+import App from 's1-main/m1-ui/App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux';
 import {HashRouter} from "react-router-dom";

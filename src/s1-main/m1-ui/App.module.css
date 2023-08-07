@@ -1,0 +1,15 @@
+.appWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 100vh;
+    background-color: rgba(227, 227, 227, 0.43);
+    align-content: flex-start;
+    justify-content: center;
+}
+
+.appWrapperContent {
+    background-color: darkcyan;
+    display: flex;
+    width: 90vw;
+    margin: 30px;
+}
