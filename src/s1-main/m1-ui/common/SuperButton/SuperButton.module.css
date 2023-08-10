@@ -5,12 +5,12 @@
 
 }
 
-.disabled {
+.button:disabled {
+    background-color: #004D99;
+    color: #002E5C;
+    height: 30px;
 }
 
-.secondary {
-    background-color: white;
-}
 .default {
     width: 85%;
     height: 36px;
@@ -19,38 +19,71 @@
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
-    color: white;
+    color: #ffffff;
     border: none;
     background: #e76732;
+    text-align: center;
 }
 
-.red {
-    background-color: #CC1439;
-}
 .default:hover {
     background: #dc4615;
-}
-
-.red:hover {
-    background-color: #FF1A47;
-}
-
-.secondary:hover {
-    background-color: #E5F0FA
 }
 
 .default:active {
     background: #b73a11;
 }
+
+.secondary {
+    display: flex;
+    background: none;
+    box-shadow: none;
+    border: none;
+    border-bottom: 1px solid #a0a0a1;
+    border-radius: 0;
+    text-align: left;
+    height: 100%;
+}
+.secondary img {
+    height: 40px;
+    margin-right: 10px;
+}
+
+.secondary a {
+    width: 100%;
+    color: #2c2c2c;
+    text-decoration: none;
+    padding-left:10px;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 1rem;
+}
+
+.secondary a:hover {
+    color: #dc4615;
+}
+
 .secondary:active {
     background: #C9E5FF;
 }
+
+
+.disabled {
+}
+
+.red {
+    background-color: #CC1439;
+}
+
+
+.red:hover {
+    background-color: #FF1A47;
+}
+
+
 .red:active {
     background: #B31232;
 
 }
-.button:disabled {
-    background-color: #004D99;
-    color: #002E5C;
-    height: 30px;
-}
+

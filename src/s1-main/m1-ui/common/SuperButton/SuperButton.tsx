@@ -26,7 +26,6 @@ export const SuperButton: React.FC<SuperButtonPropsType> = ({
 
   return (
     <button
-      style={{ textAlign: 'center' }}
       disabled={disabled}
       className={finalClassName}
       {...restProps}
