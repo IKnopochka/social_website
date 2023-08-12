@@ -8,7 +8,7 @@ type DefaultButtonPropsType = DetailedHTMLProps<
 >
 
 type SuperButtonPropsType = DefaultButtonPropsType & {
-  xType?: string
+  xType?: 'secondary' | 'red'
 }
 
 export const SuperButton: React.FC<SuperButtonPropsType> = ({

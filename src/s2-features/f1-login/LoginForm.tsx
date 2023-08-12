@@ -40,6 +40,7 @@ export const LoginForm = () => {
                     color="warning"
                     error={!!errors.email}
                     helperText={errors.email?.message}
+                    defaultValue={'irinaredhood@gmail.com'}
                     {...register('email', {required: 'Email is a required field!'})}
                 />
                 <PasswordInput id="password" register={register} error={errors.password}/>
@@ -49,8 +50,6 @@ export const LoginForm = () => {
                     <span>Remember me?</span>
                 </div>
                 <SuperButton
-
-                    xType='default'
                     type="submit"
                     style={{
                         marginTop: '100px',

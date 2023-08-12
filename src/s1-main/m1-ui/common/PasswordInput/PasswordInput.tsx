@@ -34,6 +34,7 @@ export const PasswordInput: FC<PasswordInputProps> = ({ id, register, error }) =
         type={showPassword ? 'text' : 'password'}
         color="warning"
         error={!!error}
+        defaultValue={'FreeToWatch'}
         {...register('password', {
           required: 'Password is a required field!',
           minLength: { value: 6, message: 'Minimum length of password is 6 symbols' },

@@ -1,9 +1,76 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: aquamarine;
+    position: relative;
+    flex-grow: 1;
+    margin: 10px;
+    /*flex: 1 0 0;*/
 
-.content img {
-    height: 150px;
-    margin: 0 auto;
 }
 
-.item {
-color: greenyellow;
+.paper {
+    display: flex;
+
+}
+
+.avatar {
+    display: flex;
+    position: relative;
+    align-items: flex-end;
+}
+
+.description {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+}
+
+.description h1 {
+    color: #2c2c2c;
+    margin: 0;
+}
+
+.editModeOff {
+    font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    line-height: 1.4375em;
+    letter-spacing: 0.00938em;
+}
+
+.postsBlock {
+    display: flex;
+    flex-direction: column;
+}
+
+.form {
+    display: flex;
+    position: relative;
+    margin-bottom: 20px;
+}
+.textArea {
+    color: #2c2c2c;
+    background-color: rgba(227, 227, 227, 0.43);
+    width: 500px;
+    border-radius: 5px;
+}
+.textArea:focus {
+
+    outline: 1px solid #2c2c2c;
+}
+
+.addPostButton {
+    width: 200px;
+    margin-left: 20px;
+}
+
+.postItem {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+.postMessage {
+    margin-left: 10px;
 }

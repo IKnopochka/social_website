@@ -1,4 +1,7 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import TextField from '@mui/material/TextField';
+import s from 's2-features/f2-profile/Profile.module.css'
+import EditIcon from '@mui/icons-material/Edit';
 
 type ProfileStatusWithHooksPropsType = {
     status: string
@@ -23,16 +26,21 @@ export function ProfileStatusWithHooks(props: ProfileStatusWithHooksPropsType) {
     }, [props.status])
 
     return <div>
+        <EditIcon fontSize={"small"} sx={{marginRight: '5px'}}/>
         {!editMode
-            ? <span onDoubleClick={() => setEditMode(true)}>{props.status}</span>
-            : <input autoFocus
-                     onChange={(e) => {setStatus(e.currentTarget.value)}}
-                     onBlur={() => {
-                setEditMode(false)
-                         props.updateStatus(status)
+            ? <span className={s.editModeOff} onDoubleClick={() => setEditMode(true)}>{props.status}</span>
+            : <TextField autoFocus
+                         variant="standard"
+                         color={"warning"}
+                         onChange={(e) => {
+                             setStatus(e.currentTarget.value)
+                         }}
+                         onBlur={() => {
+                             setEditMode(false)
+                             props.updateStatus(status)
 
-            }}
-                     value={status}
+                         }}
+                         value={status}
             />}
 
     </div>

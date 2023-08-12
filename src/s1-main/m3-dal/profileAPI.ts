@@ -21,7 +21,8 @@ export const profileAPI = {
         return instance.put('profile/status', {status})
     },
     uploadPhoto(image: string) {
-        return instance.put<AxiosResponse<UpdateProfileResponseType<PhotosType>>>('profile/photo', {image})
+        //return instance.put<AxiosResponse<UpdateProfileResponseType<PhotosType>>>('profile/photo', {image})
+        return instance.put('profile/photo', {image})
     }
 
 }
@@ -54,6 +55,6 @@ export type UpdateProfileResponseType<D = {}> = {
 }
 
 type PhotosType = {
-    small: string | null
+    small: string | undefined
     large: string | null
 }

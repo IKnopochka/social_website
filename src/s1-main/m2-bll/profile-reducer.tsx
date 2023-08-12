@@ -93,9 +93,11 @@ export const deletePostThunkCreator = (postId: number) => {
     }
 }
 export const changeProfileImageTC = (image: string) => (dispatch: Dispatch) => {
+    console.log('changeImageTc happened')
     profileAPI.uploadPhoto(image)
         .then(res => {
             if (res.data.data.resultCode === 0) {
+                console.log('success')
                 dispatch(uploadProfilePicture(image))
             }
         })

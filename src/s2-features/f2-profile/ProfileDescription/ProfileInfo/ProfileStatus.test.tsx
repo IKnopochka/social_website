@@ -1,6 +1,6 @@
 import React from 'react'
 import { create } from 'react-test-renderer'
-import {ProfileStatus} from "s2-features/f2-profile/ProfileInfo/ProfileStatus";
+import {ProfileStatus} from "s2-features/f2-profile/ProfileDescription/ProfileInfo/ProfileStatus";
 
 describe('ProfileStatus component', () => {
     test('status from props should be in the state', () => {

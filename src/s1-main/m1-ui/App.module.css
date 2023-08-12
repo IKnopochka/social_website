@@ -8,7 +8,6 @@
 }
 
 .appWrapperContent {
-    background-color: darkcyan;
     display: flex;
     width: 1300px;
     margin: 30px;
