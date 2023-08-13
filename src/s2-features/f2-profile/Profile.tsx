@@ -6,7 +6,6 @@ import Box from "@mui/material/Box";
 
 const Profile = (props: ProfileMapStateToPropsType & { updateStatus: (status: string) => void }) => {
     return (
-       // <div >
             <Box
                 sx={{
                     display: 'flex',
@@ -22,7 +21,6 @@ const Profile = (props: ProfileMapStateToPropsType & { updateStatus: (status: st
                 <ProfileInfo profile={props.profile} status={props.status} updateStatus={props.updateStatus}/>
                 <MyPostsContainer/>
             </Box>
-        // </div>
     )
 }
 export default Profile;
