@@ -27,20 +27,4 @@
 
 }
 
-.colors {
-    background-color: #2c2c2c;
-    color: #ffffff;
-    color: #a0a0a1;
-    color: #E76732FF;
-    color: #e76732;
-    color: #feb592;
-    color: rgba(227, 227, 227, 0.43)
-
-}
-.colors:hover{
-    background: #dc4615;
-}
-.colors:active {
-    background: #b73a11;
-}
 

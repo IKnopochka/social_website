@@ -1,0 +1,8 @@
+.textArea {
+    color: #2c2c2c;
+    background-color: rgba(227, 227, 227, 0.43);
+    border-radius: 5px;
+}
+.textArea:focus {
+    outline: 1px solid #2c2c2c;
+}

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import styles from "s2-features/f6-users/Users.module.css";
-import {UsersPropsType} from "s2-features/f6-users/Users";
+import styles from "s2-features/f7-users/Users.module.css";
+import {UsersPropsType} from "s2-features/f7-users/Users";
 
 export const Paginator = ({onPageChanged, totalItemsCount, itemsPerPage, currentPage, pagesPerPortion, ...props}: UsersPropsType) => {
     let pagesTotalNumber = Math.ceil(totalItemsCount / itemsPerPage)

@@ -44,7 +44,7 @@
     height: 100%;
 }
 .secondary img {
-    height: 40px;
+    width: 40px;
     margin-right: 10px;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .secondary:active {
-    background: #C9E5FF;
+    background: rgba(227, 227, 227, 0.43);
 }
 
 

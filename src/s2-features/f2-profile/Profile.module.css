@@ -1,18 +1,5 @@
-.content {
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    background-color: aquamarine;
-    position: relative;
-    flex-grow: 1;
-    margin: 10px;
-    /*flex: 1 0 0;*/
-
-}
-
 .paper {
     display: flex;
-
 }
 
 .avatar {
@@ -51,14 +38,7 @@
     margin-bottom: 20px;
 }
 .textArea {
-    color: #2c2c2c;
-    background-color: rgba(227, 227, 227, 0.43);
     width: 500px;
-    border-radius: 5px;
-}
-.textArea:focus {
-
-    outline: 1px solid #2c2c2c;
 }
 
 .addPostButton {

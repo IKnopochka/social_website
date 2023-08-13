@@ -1,6 +1,6 @@
 import React, {FormEventHandler} from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {textareaField} from "s1-main/m1-ui/utils/RenderValidationField";
+import {textareaField} from "s1-main/m1-ui/common/fields/Fields";
 import {maxLength200} from "s1-main/m1-ui/utils/validators";
 import {SuperButton} from "s1-main/m1-ui/common/SuperButton/SuperButton";
 import s from '../../Profile.module.css'

@@ -1,0 +1,60 @@
+.friendBox {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    max-height: 400px;
+    justify-content: space-evenly;
+    width: 200px;
+}
+
+.friendBox img {
+    width: 50px;
+    max-height: 50px;
+    border-radius: 30px;
+}
+
+
+.friendName {
+    color: #2c2c2c;
+    text-decoration: none;
+}
+
+.active {
+    background-color: rgba(227, 227, 227, 0.43);
+}
+
+.chatContainer {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: inherit;
+    justify-content: space-between;
+    height: 80vh;
+}
+
+.chatBox {
+    display: flex;
+    flex-direction: column;
+    max-height: 90%;
+}
+.messagesFromFriend {
+
+}
+.messagesPersonal {
+
+}
+
+.textBox {
+    display: flex;
+    position: relative;
+    width: 100%
+}
+
+.textArea {
+    width: 70%;
+}
+
+.button {
+    width: auto;
+    flex-grow: 1;
+}

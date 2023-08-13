@@ -1,8 +1,8 @@
 import React from 'react';
 import userPhoto from "s1-main/m1-ui/images/defaultProfileImage.png";
-import styles from "s2-features/f6-users/Users.module.css";
+import styles from "s2-features/f7-users/Users.module.css";
 import {NavLink} from "react-router-dom";
-import {UsersPagePropsType} from "s2-features/f6-users/UsersContainer";
+import {UsersPagePropsType} from "s2-features/f7-users/UsersContainer";
 import {Paginator} from "s1-main/m1-ui/common/Paginator";
 
 export type UsersPropsType = {

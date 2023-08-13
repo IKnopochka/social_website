@@ -1,14 +1,13 @@
 import React, {Suspense} from 'react';
-import {Navigate, Route, Routes} from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import Login from "s2-features/f1-login/Login";
-import Navbar from "s1-main/m1-ui/common/navbar/Navbar";
 import ProfileContainer from "s2-features/f2-profile/ProfileContainer";
-import News from "s2-features/f3-news/News";
-import Music from "s2-features/f4-music/Music";
-import Settings from "s2-features/f5-settings/Settings";
+import News from "s2-features/f4-news/News";
+import Music from "s2-features/f5-music/Music";
+import Settings from "s2-features/f6-settings/Settings";
 
-const DialogsContainer = React.lazy(() => import('s2-features/f2-messages/DialogsContainer'));
-const UsersContainer = React.lazy(() => import('s2-features/f6-users/UsersContainer'));
+const DialogsContainer = React.lazy(() => import('s2-features/f3-messages/DialogsContainer'));
+const UsersContainer = React.lazy(() => import('s2-features/f7-users/UsersContainer'));
 
 export const PATH = {
     LOGIN: '/',

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 
 
-import Users from "s2-features/f6-users/Users";
+import Users from "s2-features/f7-users/Users";
 import Preloader from "s1-main/m1-ui/common/preloader/Preloader";
 
 import {compose} from "redux";

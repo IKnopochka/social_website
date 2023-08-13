@@ -1,5 +1,4 @@
 import React from "react";
-import classes from 's2-features/f2-profile/Profile.module.css';
 import ProfileInfo from "s2-features/f2-profile/ProfileDescription/ProfileInfo/ProfileInfo"
 import MyPostsContainer from "s2-features/f2-profile/MyPosts/MyPostsContainer";
 import {ProfileMapStateToPropsType} from "s2-features/f2-profile/ProfileContainer";
@@ -17,7 +16,6 @@ const Profile = (props: ProfileMapStateToPropsType & { updateStatus: (status: st
                     '& > :not(style)': {
                     margin: '10px',
                         padding: '10px'
-                         //width: '100%',
                     },
                 }}
             >
