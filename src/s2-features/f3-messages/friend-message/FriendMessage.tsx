@@ -4,7 +4,7 @@ import {SingleMessagePropsType} from "s1-main/m2-bll/message-reducer";
 import friendAva from '../../../s1-main/m1-ui/images/avatar.png'
 
 
-const FriendMessage = (props: SingleMessagePropsType) => {
+const FriendMessage = (props: SingleMessagePropsType & {pic: string | undefined}) => {
     return (
         <div
             id={'hw1-friend-message-' + props.id}
@@ -13,7 +13,7 @@ const FriendMessage = (props: SingleMessagePropsType) => {
             <div className={s.friendImageAndText}>
                 <img
                     id={'hw1-friend-avatar-' + props.id}
-                    src={friendAva}
+                    src={props.pic}
                 />
                 <div className={s.friendText}>
                     <div

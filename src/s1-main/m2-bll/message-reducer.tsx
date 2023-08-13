@@ -1,6 +1,10 @@
 import React from 'react';
 import {v1} from "uuid";
 import {Dispatch} from "redux";
+import michaelPic from '../m1-ui/images/friends/michael.jpg'
+import irinaPic from '../m1-ui/images/friends/irina.jpg'
+import kathrynPic from '../m1-ui/images/friends/kathryn.jpg'
+import maryPic from '../m1-ui/images/friends/michael.jpg'
 
 export const MichailID = v1()
 const IrinaID = v1()
@@ -9,10 +13,10 @@ const MaryID = v1()
 
 const initialState = {
     friends: [
-        {id: MichailID, name: 'Michael', src: 'https://vjoy.cc/wp-content/uploads/2019/06/27-28.jpg'},
-        {id: IrinaID, name: 'Irina', src: 'https://vjoy.cc/wp-content/uploads/2019/06/20-31.jpg'},
-        {id: KathrynID, name: 'Kathryn', src: 'https://vjoy.cc/wp-content/uploads/2019/06/4-30.jpg'},
-        {id: MaryID, name: 'Mary', src: 'https://vjoy.cc/wp-content/uploads/2019/06/16-26.jpg'},
+        {id: MichailID, name: 'Michael', src: michaelPic},
+        {id: IrinaID, name: 'Irina', src: irinaPic},
+        {id: KathrynID, name: 'Kathryn', src: kathrynPic},
+        {id: MaryID, name: 'Mary', src: maryPic},
     ] as DialogFriendStateType[],
     messages: {
         [MichailID]: [

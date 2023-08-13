@@ -10,10 +10,11 @@ import FriendMessage from "s2-features/f3-messages/friend-message/FriendMessage"
 
 const Dialogs = (props: DialogsPagePropsType) => {
 
+    let friendsPic = props.friends.find(f => f.id === MichailID )
     let friendElements = props.friends.map(d => (<FriendBox id={d.id} name={d.name} src={d.src}/>))
     let messagesElements = props.messages[MichailID].map(m => m.personalMessage ?
         <Message id={m.id} personalMessage={m.personalMessage}/> :
-        <FriendMessage id={m.id} friendMessage={m.friendMessage}/> )
+        <FriendMessage id={m.id} friendMessage={m.friendMessage} pic={friendsPic?.src}/> )
 
     const Submit = (data: MessageFormPropsType) => {
         props.AddMessageThunkCreator(MichailID, data.message)
