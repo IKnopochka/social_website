@@ -1,6 +1,33 @@
-.photo {
-    width: 100px;
-    height: 100px;
+.paper {
+    display: flex;
+    padding: 10px;
+    margin: 10px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profileContainer {
+ display: flex;
+}
+.profileInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    color: #2c2c2c;
+}
+.profileName {
+    margin-bottom: 1rem;
+    min-height: 3rem;
+}
+.profileName h3 {
+    margin: 0;
+}
+.location img {
+    height: 20px;
+    margin-right: 5px;
+}
+.button{
+    width: 200px;
 }
 
 .selectedPage{

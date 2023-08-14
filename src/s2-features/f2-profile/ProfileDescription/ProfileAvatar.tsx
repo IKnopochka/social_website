@@ -4,7 +4,7 @@ import Avatar from '@mui/material/Avatar';
 import {deepOrange} from '@mui/material/colors';
 
 
-import {avatarSelector} from "s1-main/m1-ui/common/selectors/selectors";
+import {profileAvatarSelector} from "s1-main/m1-ui/common/selectors/selectors";
 import {useSelector} from "react-redux";
 import defaultAvatar from 's1-main/m1-ui/images/defaultProfileImage.png'
 import {useAppDispatch} from "s1-main/m3-dal/store";
@@ -16,11 +16,11 @@ import {convertFileToBase64} from "s1-main/m1-ui/utils/convertFileToBase64";
 
 type ProfileAvatarPropsType = {
     size: number
+    src: string | undefined
     withButton?: boolean
 }
 
-export const ProfileAvatar: FC<ProfileAvatarPropsType> = ({size, withButton, ...props}) => {
-    const avatar = useSelector(avatarSelector)
+export const ProfileAvatar: FC<ProfileAvatarPropsType> = ({size, src, withButton, ...props}) => {
     const dispatch = useAppDispatch()
 
     const uploadHandler = (e: ChangeEvent<HTMLInputElement>, callback: (img: string) => void) => {
@@ -50,7 +50,7 @@ export const ProfileAvatar: FC<ProfileAvatarPropsType> = ({size, withButton, ...
         <div className={s.avatar}>
             <Avatar
                 sx={{width: `${size}px`, height: `${size}px`, bgcolor: deepOrange[500]}}
-                src={avatar}
+                src={src}
             />
             {withButton &&
             <label>

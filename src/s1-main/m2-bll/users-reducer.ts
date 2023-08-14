@@ -90,8 +90,8 @@ export type UserPropsType = {
     id: number
     name: string
     photos: {
-        small: string | null
-        large: string | null
+        small: string
+        large: string
     }
     status: string
     location?: LocationPropsType

@@ -1,10 +1,8 @@
 import React from 'react';
 import {connect} from "react-redux";
-
-
+import Box from "@mui/material/Box";
 import Users from "s2-features/f7-users/Users";
 import Preloader from "s1-main/m1-ui/common/preloader/Preloader";
-
 import {compose} from "redux";
 import {
     AllUsersPropsType, follow,
@@ -15,6 +13,7 @@ import {
 import {getUsersSelectorFake} from "s1-main/m1-ui/common/selectors/selectors";
 import {AppRootStateType} from "s1-main/m3-dal/store";
 import {withAuthRedirect} from "s1-main/m1-ui/HOCs/withAuthRedirect";
+import Paper from "@mui/material/Paper";
 
 
 export type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
@@ -31,7 +30,6 @@ export type MapToDispatchPropsType = {
 class UsersContainer extends React.Component<UsersPagePropsType> {
 
     componentDidMount() {
-        console.log('user Cont comp did mount')
         this.props.getUsersThunkCreator(this.props.currentPage, this.props.itemsPerPage)
     }
 
@@ -40,20 +38,32 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
     }
 
     render() {
-        console.log('user Cont render')
         return <>
             {this.props.isFetching ? <Preloader/> : null}
 
-            <Users onPageChanged={this.onPageChanged}
-                   {...this.props}
-            />
+            <Box
+                sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    flexDirection: 'column',
+                    flexGrow: '1',
+                    '& > :not(style)': {
+
+                    },
+                }}
+            >
+                    <Users onPageChanged={this.onPageChanged}
+                           {...this.props}
+                    />
+            </Box>
+
+
         </>
     }
 }
 
 
 const mapStateToProps = (state: AppRootStateType): AllUsersPropsType => {
-    console.log('MapStateTpProps USER container')
     return {
         users: getUsersSelectorFake(state),
         itemsPerPage: state.usersPage.itemsPerPage,

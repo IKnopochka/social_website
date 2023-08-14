@@ -10,5 +10,5 @@ export const getUsersSelectorFake = createSelector(getUsersHelpFunction, (users)
 
 
 //profile
-export const avatarSelector = (state: AppRootStateType) => state.profilePage.profile.photos.small
+export const profileAvatarSelector = (state: AppRootStateType) => state.profilePage.profile.photos.small
 

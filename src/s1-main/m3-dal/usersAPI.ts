@@ -1,5 +1,4 @@
 import axios from "axios";
-import {UserPropsType} from "s1-main/m2-bll/users-reducer";
 
 const instance = axios.create({
     withCredentials: true,

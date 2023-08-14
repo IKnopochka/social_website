@@ -6,13 +6,11 @@
 }
 
 .button:disabled {
-    background-color: #004D99;
-    color: #002E5C;
-    height: 30px;
+    background-color: #b73a11;
+    color: rgba(227, 227, 227, 0.43);
 }
 
 .default {
-    width: 85%;
     height: 36px;
     font-family: 'Montserrat', sans-serif;
     line-height: 23px;
@@ -69,8 +67,6 @@
 }
 
 
-.disabled {
-}
 
 .red {
     background-color: #CC1439;
