@@ -3,7 +3,7 @@ import defaultPhoto from "s1-main/m1-ui/images/defaultProfileImage.png";
 import s from "s2-features/f7-users/Users.module.css";
 import {NavLink} from "react-router-dom";
 import {UsersPagePropsType} from "s2-features/f7-users/UsersContainer";
-import {Paginator} from "s1-main/m1-ui/common/Paginator";
+import {Paginator} from "s1-main/m1-ui/common/pagination/Paginator";
 import Paper from "@mui/material/Paper";
 import {ProfileAvatar} from "s2-features/f2-profile/ProfileDescription/ProfileAvatar";
 import {PATH} from "s1-main/m1-ui/routes/AppRoutes";

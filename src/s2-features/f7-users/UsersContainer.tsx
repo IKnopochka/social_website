@@ -13,7 +13,6 @@ import {
 import {getUsersSelectorFake} from "s1-main/m1-ui/common/selectors/selectors";
 import {AppRootStateType} from "s1-main/m3-dal/store";
 import {withAuthRedirect} from "s1-main/m1-ui/HOCs/withAuthRedirect";
-import Paper from "@mui/material/Paper";
 
 
 export type UsersPagePropsType = AllUsersPropsType & MapToDispatchPropsType
@@ -39,23 +38,26 @@ class UsersContainer extends React.Component<UsersPagePropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
+            {this.props.isFetching
+                ? <Preloader/>
+                : <Box
+                    sx={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        flexDirection: 'column',
+                        flexGrow: '1',
+                        '& > :not(style)': {
 
-            <Box
-                sx={{
-                    display: 'flex',
-                    flexWrap: 'wrap',
-                    flexDirection: 'column',
-                    flexGrow: '1',
-                    '& > :not(style)': {
-
-                    },
-                }}
-            >
+                        },
+                    }}
+                >
                     <Users onPageChanged={this.onPageChanged}
                            {...this.props}
                     />
-            </Box>
+                </Box>
+            }
+
+
 
 
         </>

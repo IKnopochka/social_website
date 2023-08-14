@@ -1,5 +1,5 @@
 import React from 'react';
-import preloaderPic from "s1-main/m1-ui/images/Spin-1s-200px.svg";
+import preloaderPic from "s1-main/m1-ui/images/loading.svg";
 
 const Preloader = () => {
     return (

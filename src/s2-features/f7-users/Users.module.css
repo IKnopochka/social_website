@@ -29,16 +29,3 @@
 .button{
     width: 200px;
 }
-
-.selectedPage{
-    font-weight: bold;
-    margin: 2px;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.page {
-    margin: 2px;
-    border: 1px solid black;
-    cursor: pointer;
-}
